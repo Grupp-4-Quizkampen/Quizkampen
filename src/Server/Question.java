@@ -25,4 +25,32 @@ public class Question {
         this.answer4 = answer4;
         this.correctAnswer = correctAnswer;
     }
+
+    public String getAnswer1() {
+        return answer1;
+    }
+
+    public String getAnswer2() {
+        return answer2;
+    }
+
+    public String getAnswer3() {
+        return answer3;
+    }
+
+    public String getAnswer4() {
+        return answer4;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public String getCorrectAnswer() {
+        return correctAnswer;
+    }
+
+    public String getQuestion() {
+        return question;
+    }
 }
