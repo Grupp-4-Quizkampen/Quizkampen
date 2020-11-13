@@ -13,10 +13,12 @@ import java.util.Scanner;
  * Copyright: MIT
  */
 public class Game {
+
     List<Question> gameTurns;
     Path filepath = Path.of("src/Server/questions");
 
     Game(){
+
         fileReader(filepath);
 
 
