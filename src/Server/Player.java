@@ -15,13 +15,11 @@ public class Player extends Thread {
     public Player(Socket socket) {
         this.socket = socket;
         try {
-            in = new BufferedReader(
-                    new InputStreamReader(socket.getInputStream()));  //lyssnar efter anslutning
             out = new PrintWriter(socket.getOutputStream(), true);
-            //Client asks for playerName
-            playerName = in.readLine();
-            out.println("Welcome, "+playerName);
-            out.println("Waiting for second opponent to connect to the game...");
+            in = new BufferedReader(
+                    new InputStreamReader(socket.getInputStream()));  //Connects to the socket provided by Server
+            out.println("Welcome, to Quizkampen!");
+            out.println("Waiting for an opponent to connect to the game...");
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -38,6 +36,12 @@ public class Player extends Thread {
     // Tråden startar bara när två spelare har anslutit till spelet.
 
         out.println("All players are connected, we are ready to play!");
+        //Client asks for playerName
+        try {
+            playerName = in.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         //Fortsätt skriva kod här: vad som sker när spelet börjar...
 

@@ -15,8 +15,8 @@ public class Client {
 
         try (
                 Socket clientSocket = new Socket(adr, port);
-                BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-                PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true)) {
+                PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
+                BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()))) {
                 System.out.println(" Client/Server-Setup complete\n");
 
 
