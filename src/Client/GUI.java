@@ -1,12 +1,9 @@
 package Client;
 
-import Server.Question;
 import Server.Question2;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class GUI {
@@ -22,7 +19,7 @@ public class GUI {
     Question2 question = getQuestion();
 
     public GUI() {
-        labelQuestion.setText(question.title);
+        labelQuestion.setText(question.prompt);
 
         buttons.add(button1);
         buttons.add(button2);
@@ -34,7 +31,7 @@ public class GUI {
             btn.setText(question.options[i]);
             btn.setBackground(Color.yellow);
             btn.setOpaque(true);
-            btn.setBorderPainted(false);
+            btn.setBorderPainted(true);
             btn.addActionListener(e -> revealAnswer());
         }
     }
@@ -62,5 +59,6 @@ public class GUI {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
+        frame.setLocationRelativeTo(null);
     }
 }

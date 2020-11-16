@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Game {
-    List<Question> gameTurns;
+    List<Question2> gameTurns;
     Path filepath = Path.of("src/Server/questions");
 
     Game(Player player1, Player player2){
@@ -25,13 +25,13 @@ public class Game {
 
             while(scan.hasNext()){
                 String category = scan.next();
-                String question = scan.next();
-                String answer1 = scan.next();
-                String answer2 = scan.next();
-                String answer3 = scan.next();
-                String answer4 = scan.next();
-                String correctAnswer = scan.next();
-                gameTurns.add(new Question(category, question, answer1, answer2, answer3, answer4, correctAnswer));
+                String prompt = scan.next();
+                String[] options = new String[4];
+                for (int i = 0; i < 4; i++) {
+                    options [i] = scan.next();
+                }
+                int correctAnswerIndex = scan.nextInt();
+                gameTurns.add(new Question2(category, prompt, options, correctAnswerIndex));
             }
 
 

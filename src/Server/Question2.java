@@ -2,12 +2,13 @@ package Server;
 
 public class Question2 {
 
-    public String title;
+    public String category;
+    public String prompt;
     public String[] options;
     int correctOptionIndex;
 
-    public Question2(String title, String[] options, int correctOptionIndex) {
-        this.title = title;
+    public Question2(String category, String prompt, String[] options, int correctOptionIndex) {
+        this.prompt = prompt;
         this.options = options;
         this.correctOptionIndex = correctOptionIndex;
     }
