@@ -6,21 +6,29 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class GUI {
-    private JPanel panel1;
-    private JButton button1;
-    private JButton button2;
-    private JButton button3;
-    private JButton button4;
-    private JLabel labelQuestion;
+public class GUI extends JFrame {
+    private JPanel promptPanel = new JPanel();
+    private JPanel answerPanel = new JPanel();
+    private JButton button1 = new JButton();
+    private JButton button2 = new JButton();
+    private JButton button3 = new JButton();
+    private JButton button4 = new JButton();
+    private JLabel promptLabel = new JLabel();
 
     //    int correctAnswerIndex = (int) (Math.random() * 3);
     ArrayList<JButton> buttons = new ArrayList<>();
     Question question = getQuestion();
 
     public GUI() {
-        labelQuestion.setText(question.prompt);
+        setLayout(new BorderLayout());
+        add(BorderLayout.NORTH, promptPanel);
+        promptPanel.add(BorderLayout.SOUTH, promptLabel);
+        add(answerPanel);
 
+        promptLabel.setText(question.prompt);
+        answerPanel.setLayout(new GridLayout(2, 2));
+
+        button1.setPreferredSize(new Dimension(50, 20));
         buttons.add(button1);
         buttons.add(button2);
         buttons.add(button3);
@@ -33,7 +41,14 @@ public class GUI {
             btn.setOpaque(true);
             btn.setBorderPainted(true);
             btn.addActionListener(e -> revealAnswer());
+            answerPanel.add(btn);
         }
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);
+        setLocationRelativeTo(null);
+        answerPanel.setPreferredSize(new Dimension(500, 100));
+        promptPanel.setPreferredSize(new Dimension(500,20));
+        pack();
     }
 
     private void revealAnswer() {
@@ -54,11 +69,6 @@ public class GUI {
     }
 
     public static void main(String[] args) {
-        JFrame frame = new JFrame("GUI");
-        frame.setContentPane(new GUI().panel1);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
-        frame.setLocationRelativeTo(null);
+        new GUI();
     }
 }
