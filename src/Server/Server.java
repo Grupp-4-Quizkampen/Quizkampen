@@ -6,13 +6,6 @@ import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-/**
- * Created by: Anton Rolin
- * Date: 12/11/2020
- * Time: 13:30
- * Project: Quizkampen
- * Copyright: MIT
- */
 public class Server {
 
     public static void main(String[] args) throws IOException {

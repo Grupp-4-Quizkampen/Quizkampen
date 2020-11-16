@@ -3,13 +3,6 @@ package Server;
 import java.io.*;
 import java.net.Socket;
 
-/**
- * Cretated by Madeleine Lennhamn
- * Date: 2020-11-13
- * Time: 10:35
- * Project: $ {PROJECT_NAME}
- * Copyright: MIT
- */
 public class Player extends Thread {
 
     Socket socket;

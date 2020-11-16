@@ -1,12 +1,5 @@
 package Server;
 
-/**
- * Created by: Anton Rolin
- * Date: 12/11/2020
- * Time: 14:10
- * Project: Quizkampen
- * Copyright: MIT
- */
 public class Question {
     String category;
     String question;

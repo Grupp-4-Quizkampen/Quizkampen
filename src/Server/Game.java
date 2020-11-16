@@ -6,13 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-/**
- * Created by: Anton Rolin
- * Date: 12/11/2020
- * Time: 14:08
- * Project: Quizkampen
- * Copyright: MIT
- */
 public class Game {
     List<Question> gameTurns;
     Path filepath = Path.of("src/Server/questions");
