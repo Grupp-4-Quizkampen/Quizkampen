@@ -1,49 +1,19 @@
 package Server;
 
 public class Question {
-    String category;
-    String question;
-    String answer1;
-    String answer2;
-    String answer3;
-    String answer4;
-    String correctAnswer;
 
-    Question(String category, String question, String answer1, String answer2, String answer3, String answer4, String correctAnswer){
-        this.category = category;
-        this.question = question;
-        this.answer1 = answer1;
-        this.answer2 = answer2;
-        this.answer3 = answer3;
-        this.answer4 = answer4;
-        this.correctAnswer = correctAnswer;
+    public String category;
+    public String prompt;
+    public String[] options;
+    int correctOptionIndex;
+
+    public Question(String category, String prompt, String[] options, int correctOptionIndex) {
+        this.prompt = prompt;
+        this.options = options;
+        this.correctOptionIndex = correctOptionIndex;
     }
-
-    public String getAnswer1() {
-        return answer1;
-    }
-
-    public String getAnswer2() {
-        return answer2;
-    }
-
-    public String getAnswer3() {
-        return answer3;
-    }
-
-    public String getAnswer4() {
-        return answer4;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public String getCorrectAnswer() {
-        return correctAnswer;
-    }
-
-    public String getQuestion() {
-        return question;
+    public boolean guess(int index) {
+        return index == correctOptionIndex;
     }
 }
+

@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Game {
-    List<Question2> gameTurns;
+    List<Question> gameTurns;
     Path filepath = Path.of("src/Server/questions");
 
     Game(Player player1, Player player2){
@@ -31,7 +31,7 @@ public class Game {
                     options [i] = scan.next();
                 }
                 int correctAnswerIndex = scan.nextInt();
-                gameTurns.add(new Question2(category, prompt, options, correctAnswerIndex));
+                gameTurns.add(new Question(category, prompt, options, correctAnswerIndex));
             }
 
 

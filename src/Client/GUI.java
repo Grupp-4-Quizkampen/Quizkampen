@@ -1,6 +1,6 @@
 package Client;
 
-import Server.Question2;
+import Server.Question;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,7 +16,7 @@ public class GUI {
 
     //    int correctAnswerIndex = (int) (Math.random() * 3);
     ArrayList<JButton> buttons = new ArrayList<>();
-    Question2 question = getQuestion();
+    Question question = getQuestion();
 
     public GUI() {
         labelQuestion.setText(question.prompt);
@@ -44,12 +44,12 @@ public class GUI {
     }
 
 
-    Question2 getQuestion() {
-        ArrayList<Question2> questions = new ArrayList<>();
-        questions.add(new Question2("Vilken är min favoritfärg?", new String[]{"Grön", "Röd", "Blå", "Gul"}, 0));
-        questions.add(new Question2("Vilket är mitt favoritberg?", new String[]{"Mount Blanc", "K2", "Mount Everest", "Makalu"}, 3));
-        questions.add(new Question2("Vilken är mitt favoritbär?", new String[]{"Krusbär", "Hallon", "Blåbär", "Hjortron"}, 1));
-        questions.add(new Question2("Vilken är min favoritdvärg?", new String[]{"Toker", "Kloker", "Butter", "Prosit"}, 2));
+    Question getQuestion() {
+        ArrayList<Question> questions = new ArrayList<>();
+        questions.add(new Question("", "Vilken är min favoritfärg?", new String[]{"Grön", "Röd", "Blå", "Gul"}, 0));
+        questions.add(new Question("", "Vilket är mitt favoritberg?", new String[]{"Mount Blanc", "K2", "Mount Everest", "Makalu"}, 3));
+        questions.add(new Question("", "Vilken är mitt favoritbär?", new String[]{"Krusbär", "Hallon", "Blåbär", "Hjortron"}, 1));
+        questions.add(new Question("", "Vilken är min favoritdvärg?", new String[]{"Toker", "Kloker", "Butter", "Prosit"}, 2));
         return questions.get((int) (Math.random() * questions.size()));
     }
 
