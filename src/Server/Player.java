@@ -7,7 +7,7 @@ public class Player extends Thread {
 
     Socket socket;
     String playerName;
-    Game game;
+    Game activeGame;
     BufferedReader in;
     PrintWriter out;
 
