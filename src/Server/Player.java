@@ -6,7 +6,7 @@ import java.net.Socket;
 public class Player extends Thread {
 
     Socket socket;
-    Player playerName;
+    String playerName;
     Game game;
     BufferedReader in;
     PrintWriter out;
@@ -28,7 +28,7 @@ public class Player extends Thread {
         }
     }
 
-    public void setPlayerName(Player playerName) {
+    public void setPlayerName(String playerName) {
         this.playerName = playerName;
     }
 
