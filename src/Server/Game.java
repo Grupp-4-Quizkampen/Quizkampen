@@ -10,7 +10,9 @@ public class Game {
     List<Question> gameTurns;
     Path filepath = Path.of("src/Server/questions");
 
-    Game(){
+    Game(Player player1, Player player2){
+        player1.start(); //startar spelare 1
+        player2.start(); //startar spelare 2
         readFileAddToList(filepath);
 
 

@@ -23,11 +23,7 @@ public class Server {
             Player player1 = new Player(serverSocket.accept());
             Player player2 = new Player(serverSocket.accept());
 
-           // player1.setPlayerName(player1);
-           // player2.setPlayerName(player2);
-
-            player1.start(); //startar spelare 1
-            player2.start(); //startar spelare 2
+            new Game(player1, player2);
 
         }
     }
