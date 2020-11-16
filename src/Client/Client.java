@@ -17,10 +17,8 @@ public class Client {
                 Socket clientSocket = new Socket(adr, port);
                 PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
                 BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()))) {
-                System.out.println(" Client/Server-Setup complete\n");
 
 
-            // Player: output.println("WELCOME ");
 
             System.out.println("What's your name?");
             Scanner scanner = new Scanner(System.in);

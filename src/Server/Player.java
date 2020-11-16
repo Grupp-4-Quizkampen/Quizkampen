@@ -33,8 +33,6 @@ public class Player extends Thread {
     @Override
     public void run() {
 
-    // Tråden startar bara när två spelare har anslutit till spelet.
-
         out.println("All players are connected, we are ready to play!");
         //Client asks for playerName
         try {
@@ -43,7 +41,6 @@ public class Player extends Thread {
             e.printStackTrace();
         }
 
-        //Fortsätt skriva kod här: vad som sker när spelet börjar...
 
 
 

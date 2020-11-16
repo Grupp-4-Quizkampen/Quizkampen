@@ -11,8 +11,8 @@ public class Game {
     Path filepath = Path.of("src/Server/questions");
 
     Game(Player player1, Player player2){
-        player1.start(); //startar spelare 1
-        player2.start(); //startar spelare 2
+        player1.start();
+        player2.start();
         readFileAddToList(filepath);
 
 
