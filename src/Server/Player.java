@@ -14,13 +14,13 @@ public class Player extends Thread {
 
     public Player(Socket socket) {
         this.socket = socket;
-        this.playerName = playerName;
         try {
             in = new BufferedReader(
                     new InputStreamReader(socket.getInputStream()));  //lyssnar efter anslutning
-
             out = new PrintWriter(socket.getOutputStream(), true);
-            out.println("Welcome to Quizkampen!");
+            //Client asks for playerName
+            playerName = in.readLine();
+            out.println("Welcome, "+playerName);
             out.println("Waiting for second opponent to connect to the game...");
 
         } catch (IOException e) {

@@ -4,14 +4,8 @@ import java.io.*;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.Scanner;
 
-/**
- * Created by: Anton Rolin
- * Date: 12/11/2020
- * Time: 13:22
- * Project: Quizkampen
- * Copyright: MIT
- */
 public class Client {
 
     public static void main(String[] args) throws UnknownHostException {
@@ -22,11 +16,16 @@ public class Client {
         try (
                 Socket clientSocket = new Socket(adr, port);
                 BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-                PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);) {
+                PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true)) {
                 System.out.println(" Client/Server-Setup complete\n");
 
 
             // Player: output.println("WELCOME ");
+
+            System.out.println("What's your name?");
+            Scanner scanner = new Scanner(System.in);
+            String playerName = scanner.nextLine().trim();
+            out.println(playerName);
 
             Object fromServer;
 
