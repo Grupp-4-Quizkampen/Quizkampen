@@ -15,7 +15,6 @@ public class Game {
         player2.start();
         readFileAddToList(filepath);
 
-
     }
 
     private void readFileAddToList(Path filepath) {

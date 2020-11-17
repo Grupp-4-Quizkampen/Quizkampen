@@ -6,22 +6,21 @@ import java.net.Socket;
 public class Player extends Thread {
 
     Socket socket;
-    String playerName;
+    Object playerName;
     Game activeGame;
-    BufferedReader in;
-    PrintWriter out;
+    ObjectOutputStream out;
+    ObjectInputStream in;
+
 
 
     public Player(Socket socket) {
         this.socket = socket;
         try {
-            out = new PrintWriter(socket.getOutputStream(), true);
-            in = new BufferedReader(
-                    new InputStreamReader(socket.getInputStream()));  //Connects to the socket provided by Server
-            out.println("Welcome, to Quizkampen!");
-            out.println("Waiting for an opponent to connect to the game...");
+            out = new ObjectOutputStream(socket.getOutputStream());
+            in = new ObjectInputStream(socket.getInputStream());  //Connects to the socket provided by Server
+            out.writeObject("Welcome to Quizkampen " + in.readObject() + "!");
 
-        } catch (IOException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
@@ -33,11 +32,13 @@ public class Player extends Thread {
     @Override
     public void run() {
 
-        out.println("All players are connected, we are ready to play!");
+
         //Client asks for playerName
         try {
-            playerName = in.readLine();
-        } catch (IOException e) {
+            out.writeObject("All players are connected, we are ready to play!");
+            playerName = in.readObject();
+
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
 

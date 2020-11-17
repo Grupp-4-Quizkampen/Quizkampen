@@ -15,22 +15,22 @@ public class Client {
 
         try (
                 Socket clientSocket = new Socket(adr, port);
-                PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
-                BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()))) {
+                ObjectOutputStream out = new ObjectOutputStream(clientSocket.getOutputStream());
+                ObjectInputStream in = new ObjectInputStream((clientSocket.getInputStream()))) {
 
 
 
             System.out.println("What's your name?");
             Scanner scanner = new Scanner(System.in);
             String playerName = scanner.nextLine().trim();
-            out.println(playerName);
+            out.writeObject(playerName);
 
             Object fromServer;
 
-            while ((fromServer = in.readLine()) != null) {
+            while ((fromServer = in.readObject()) != null) {
                 System.out.println("Server: " + fromServer);
             }
-        } catch (IOException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
 
