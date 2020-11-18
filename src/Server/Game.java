@@ -1,20 +1,20 @@
 package Server;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
-public class Game {
-    List<GameRound> gameRounds;
+public class Game implements Serializable {
+    List<GameRound> gameRounds = new ArrayList<>();
     List<Question> unusedQuestions;
     List<Question> questionList;
-    List<GameRound> rounds = new ArrayList<>();
 
-    int questionsPerRound = 2;
-    int numberOfRounds = 2;
+    int questionsPerRound = 1;
+    int numberOfRounds = 1;
     Player player1;
     Player player2;
     Path filepath = Path.of("src/Server/questions");
@@ -35,7 +35,7 @@ public class Game {
     private void playRound() {
         for (int i = 0; i < numberOfRounds; i++) {
             List<Question> questionsToBeAsked = randomiseQuestions();
-            rounds.add(new GameRound(questionsToBeAsked));
+            gameRounds.add(new GameRound(questionsToBeAsked));
         }
 
 
@@ -52,8 +52,11 @@ public class Game {
         roundQuestionList.add(firstQuestion);
         unusedQuestions.remove(firstQuestion);
 
-        for (Question question : questionList) {
-            if (question.getCategory().equalsIgnoreCase(firstQuestion.getCategory())) {
+        for (Question question : unusedQuestions) {
+            if (
+                    question.getCategory()
+                    .equalsIgnoreCase(firstQuestion
+                            .getCategory())) {
                 roundQuestionList.add(question);
                 unusedQuestions.remove(question);
             }
@@ -70,15 +73,19 @@ public class Game {
             scan.useDelimiter(";");
             unusedQuestions = new ArrayList<>();
 
+            int counter = 0;
             while (scan.hasNext()) {
+                System.out.println("Loop "+ ++counter);
                 String category = scan.next();
                 String prompt = scan.next();
                 String[] options = new String[4];
                 for (int i = 0; i < 4; i++) {
                     options[i] = scan.next();
+                    System.out.println(options[i]);
                 }
                 int correctAnswerIndex = scan.nextInt();
                 unusedQuestions.add(new Question(category, prompt, options, correctAnswerIndex));
+                System.out.println(unusedQuestions.get(unusedQuestions.size()-1).getCategory());
             }
 
 

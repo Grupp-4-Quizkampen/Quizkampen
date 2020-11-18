@@ -16,8 +16,8 @@ public class Player extends Thread {
     public Player(Socket socket) {
         this.socket = socket;
         try {
-            in = new ObjectInputStream(socket.getInputStream());  //Connects to the socket provided by Server
             out = new ObjectOutputStream(socket.getOutputStream());
+            in = new ObjectInputStream(socket.getInputStream());  //Connects to the socket provided by Server
             out.writeObject("Welcome, to Quizkampen!");
             out.writeObject("Waiting for an opponent to connect to the game...");
 
@@ -44,7 +44,8 @@ public class Player extends Thread {
             e.printStackTrace();
         }
 
-        List<Question> round1Questions = activeGame.getGameRounds().get(0).getRoundQuestionList();
+        List<Question> round1Questions =
+                activeGame.getGameRounds().get(0).getRoundQuestionList();
         GameRound currentRound = activeGame.getGameRounds().get(0);
         try {
             out.writeObject(currentRound);
