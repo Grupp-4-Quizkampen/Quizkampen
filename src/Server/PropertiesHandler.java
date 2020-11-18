@@ -5,26 +5,19 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 
-/**
- * Cretated by Madeleine Lennhamn
- * Date: 2020-11-17
- * Time: 19:16
- * Project: $ {PROJECT_NAME}
- * Copyright: MIT
- */
 public class PropertiesHandler {
 
-    int numOfRounds;
-    int numOfQuestions;
+    int numberOfRounds;
+    int numberOfQuestions;
 
 
     public PropertiesHandler() {
 
-        Properties p = new Properties();
+        Properties properties = new Properties();
 
         try {
 
-            p.load(new FileInputStream("src/Server/Rounds.properties")); //Reads key-pair from file
+            properties.load(new FileInputStream("src/Server/Rounds.properties")); //Reads key-pair from file
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -33,18 +26,18 @@ public class PropertiesHandler {
             e.printStackTrace();
         }
 
-        numOfRounds = Integer.parseInt(p.getProperty("numOfRounds", "1"));
-        numOfQuestions = Integer.parseInt(p.getProperty("numOfQuestions", "1"));
+        numberOfRounds = Integer.parseInt(properties.getProperty("numberOfRounds", "1"));
+        numberOfQuestions = Integer.parseInt(properties.getProperty("numberOfQuestions", "1"));
 
 
     }
 
-    public int getNumOfRounds() {
-        return numOfRounds;
+    public int getNumberOfRounds() {
+        return numberOfRounds;
     }
 
-    public int getNumOfQuestions() {
-        return numOfQuestions;
+    public int getNumberOfQuestions() {
+        return numberOfQuestions;
     }
 
 
