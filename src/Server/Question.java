@@ -15,5 +15,9 @@ public class Question {
     public boolean guess(int index) {
         return index == correctOptionIndex;
     }
+
+    public String getCategory() {
+        return category;
+    }
 }
 
