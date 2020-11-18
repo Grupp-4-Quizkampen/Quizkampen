@@ -18,9 +18,10 @@ public class Game {
     Game(Player player1, Player player2){
         this.player1 = player1;
         this.player2 = player2;
-        player1.start(); //startar spelare 1
-        player2.start(); //startar spelare 2
-        readFileAddToList(filepath);
+        player1.start();
+        player2.start();
+
+        readFileAddToList(filepath); //move to file management
 
         play();
     }
@@ -32,6 +33,7 @@ public class Game {
 
     }
 
+    //move to file management
     private void readFileAddToList(Path filepath) {
         try(Scanner scan = new Scanner(filepath)) {
             scan.useDelimiter(";");
