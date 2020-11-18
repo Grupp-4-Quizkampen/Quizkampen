@@ -1,9 +1,14 @@
 package Client;
 
+import Server.GameRound;
+import Server.Question;
+
 import java.io.*;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Client {
@@ -16,7 +21,7 @@ public class Client {
         try (
                 Socket clientSocket = new Socket(adr, port);
                 PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
-                BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()))) {
+                ObjectInputStream in = new ObjectInputStream(clientSocket.getInputStream())) {
                 System.out.println(" Client/Server-Setup complete\n");
 
 
@@ -29,10 +34,13 @@ public class Client {
 
             Object fromServer;
 
-            while ((fromServer = in.readLine()) != null) {
+            while ((fromServer = in.readObject()) != null) {
+                if (fromServer instanceof GameRound) {
+
+                }
                 System.out.println("Server: " + fromServer);
             }
-        } catch (IOException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
 

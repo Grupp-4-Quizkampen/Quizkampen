@@ -2,6 +2,7 @@ package Server;
 
 import java.io.*;
 import java.net.Socket;
+import java.util.List;
 
 public class Player extends Thread {
 
@@ -43,11 +44,19 @@ public class Player extends Thread {
             e.printStackTrace();
         }
 
-        //Fortsätt skriva kod här: vad som sker när spelet börjar...
+        List<Question> round1Questions = activeGame.getGameRounds().get(0).getRoundQuestionList();
+        GameRound currentRound = activeGame.getGameRounds().get(0);
+        try {
+            out.writeObject(currentRound);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
 
+    }
 
-
+    public void setActiveGame(Game activeGame) {
+        this.activeGame = activeGame;
     }
 }
 
