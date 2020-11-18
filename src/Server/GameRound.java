@@ -13,33 +13,33 @@ import java.util.List;
  */
 public class GameRound {
 
-    List<Question> questionList = new ArrayList();
+    List<Question> gameQuestionList = new ArrayList<>();
 
-    GameRound(int questionsPerRound, List<Question> questionList){
+    GameRound(int questionsPerRound, List<Question> questionList) {
         randomiseQuestions(questionsPerRound, questionList);
 
     }
 
-    private List<Question> randomiseQuestions(int questionsPerRound, List<Question> questionList){
-        Collections.copy(this.questionList, questionList);
-        List<Question> roundQuestionList = new ArrayList();
+    private List<Question> randomiseQuestions(int questionsPerRound, List<Question> questionList) {
+        if (this.gameQuestionList.size() == 0)
+            Collections.copy(this.gameQuestionList, questionList);
 
-        Collections.shuffle(questionList);
-        Question q = questionList.get(0);
+        List<Question> roundQuestionList = new ArrayList<>();
+        Collections.shuffle(this.gameQuestionList);
+        Question q = this.gameQuestionList.get(0);
         roundQuestionList.add(q);
-        this.questionList.remove(q);
+        this.gameQuestionList.remove(q);
 
-        int i = 1;
-        for (Question question: questionList) {
-            if(question.getCategory().equalsIgnoreCase(q.getCategory())) {
+        for (Question question : questionList) {
+            if (question.getCategory().equalsIgnoreCase(q.getCategory())) {
                 roundQuestionList.add(question);
-                this.questionList.remove(question);
-                i++;
+                this.gameQuestionList.remove(question);
             }
 
-            if(i == questionsPerRound)
+            if (roundQuestionList.size() == questionsPerRound)
                 break;
         }
         return roundQuestionList;
     }
 }
+
