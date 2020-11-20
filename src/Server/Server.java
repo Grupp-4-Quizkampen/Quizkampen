@@ -16,10 +16,6 @@ public class Server {
 
         while (true) {
 
-            //  Game game = new Game();
-
-            /* Listens for a connection to be made to this socket and accepts it.
-            The method blocks until a connection is made.*/
             Player player1 = new Player(serverSocket.accept());
             Player player2 = new Player(serverSocket.accept());
 

@@ -25,7 +25,6 @@ public class Client {
                 System.out.println(" Client/Server-Setup complete\n");
 
 
-            // Player: output.println("WELCOME ");
 
             System.out.println("What's your name?");
             Scanner scanner = new Scanner(System.in);

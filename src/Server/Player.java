@@ -9,8 +9,9 @@ public class Player extends Thread {
     Socket socket;
     String playerName;
     Game activeGame;
-    ObjectInputStream in;
     ObjectOutputStream out;
+    ObjectInputStream in;
+
 
 
     public Player(Socket socket) {
@@ -33,7 +34,6 @@ public class Player extends Thread {
     @Override
     public void run() {
 
-    // Tråden startar bara när två spelare har anslutit till spelet.
 
 
         try {
