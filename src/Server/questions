@@ -1,17 +1,20 @@
-Matte;Vad är 1+1?;1;2;3;4;1;
 Musik;Vem skrev Fur Elise?;Mozart;Beethoven;J. Bach;Chopin;1;
 Musik;Vems låt är “Vi mot världen”?;Veronica Maggio;Eva Dahlgren;Carola;Molly Sanden;0;
 Musik;Vilken 1960-tal amerikanska popgrupp skapade 'surfin-ljudet'?;The Monkees;The Ronettes;The Zombies;Beach Boys;3;
 Musik;Under vilket år åkte Beatles först till USA?;1978;1969;1964;1975;2;
 Musik;Vem var sångare med 1970-talets popgrupp Slade?;Peter Noone;0;
 Musik;Vad hette Adeles första singel?;Chasing pavements;Hometown Glory;Cold shoulder; Set fire to the rain;1;
-Musik; 'Future Nostalgia' som innehåller singeln 'Don't Start Now' är det andra studioalbumet från vilken engelsk sångare?;Adele;Jessie J;Dua Lipa; Perrie Edwards;2;
-Musik; Vad heter bandet med följande medlemmar: John Deacon, Brian May, Freddie Mercury, Roger Taylor?;Queen;The Who;Ramones;The Clash;0;
+Musik;'Future Nostalgia' som innehåller singeln 'Don't Start Now' är det andra studioalbumet från vilken engelsk sångare?;Adele;Jessie J;Dua Lipa; Perrie Edwards;2;
+Musik;Vad heter bandet med följande medlemmar: John Deacon, Brian May, Freddie Mercury, Roger Taylor?;Queen;The Who;Ramones;The Clash;0;
 Musik;Vilken sångare var bland annat känd som 'The King of Pop' och 'The Gloved One'?;Michael Jackson; Frank Sinatra; Elvis Presley; Kanye West;0;
 Musik;Vilken amerikansk popstjärna hade 2015-framgång med singlarna "Sorry" och "Love Yourself"?;Eminem; Justin Bieber; Adam Levine; Chris Brown;1;
 Musik;Hur gammal var Britney Spears när hon släppte ‘Baby One More Time’ år 1998?; 24; 20; 15; 17; 3;
 Musik;Vilket språk, mer än engelska, sjöng Celine Dion på under 90-talet?; Italienska;Spanska;Franska;Tyska; 2;
 Musik;Vilken 90-tals tjejgrupp är näst bäst säljande genom tiderna efter the Spice Girls?;Salt-N-Pepa;Destiney’s Child; TLC;Dixie Chicks;2;
+Musik;Vilket år dog George Harrison?;2005;1995;1980;2001;3;
+Musik;Vilket år släppte Eric Clapton låter "Tears in heaven"?; 1982;1991;1979;1985;1;
+Musik;Vad heter "The allman Brothers Bands" klassiska live-album fårn 1971?;One From The Road;Made in Japan; At Budokan; At Fillmore East;3;
+
 Mat och dryck;Med vilket ört kryssas brännvinet ”Bäska droppar”?;Pors;Malört;Kummin;Johannesört;1;
 Mat och dryck;Från vilket land kommer soppan “gazpacho”?;Mexiko;Spanien;Ungern;Italien;3;
 Mat och dryck;Vilken frukt används till ambrosiakaka?;Apelsin;Kiwi;Lime;Banan;0;
@@ -26,5 +29,44 @@ Mat och dryck;Hur många procent är fetthalten i mellanmjölk?;1,5%;2%;1%;1,
 Mat och dryck;I Slovenien äter man gärna potica – vad är det?; köttgryta, grönsak, bakverk, brytbröd;2;
 Mat och dryck;Sodavatten, sockerlag, lime och myntablad... Men vilken spritsort ingår i en mojito?;Tequila;Rom;Gin;Vodka; 1;
 Mat och dryck;Vilken kedja grundades av Harland Sanders, vars ansikte även finns på loggan?;Burger King;Kentucky Fried Chicken(KFC),Pizza Hut, Starbucks;1;
-Film på bio; En tysk ubåt under andra världskriget ger sig ut på ett uppdrag och sänker skepp men stöter på stora problem vid Gibraltar sund. Vilken film?;Rött hav;Jakten på Röd Oktober; U-571; Das Boot;3;
+Mat och dryck;På vad är rätten "Cuisses de grenouilles gjord"?;Sniglar;Hare;Grodlår;Musslor;2;
+Mat och dryck;Vilken öl kommer INTE från Belgien?;Leffe;Hoegaarden;Chimay;Heineken;3;
+Mat och dryck;Vad av följande matvaror består av durumvete?;Maizena;Couscous;Råris;Havreflarn;1;
+Mat och dryck;Vad av föjande kan du be om på restaurang om du vill få in en flaska Champagne?;Keystone;Sol;Campeon Light;G.H. Martel & Co.;3;
+Mat och dryck;Vilket kaffemärke använder sig av sloganen "när du får oväntat besök"?;Löfberggs lila; Nescafé;Gevalia;Zoégas;2;
+Mat och dryck;Vilken restaurang på Käringön är med i White Guide?;Peterssons krog;Simpsons prästgård;Skeppers;Ökrogen;0;
+Mat och dryck;Vad betyder det spanska "vino tinto"?;Rosévin;Rött vin;Vitt vin;Mousserande vin;1;
+Mat och dryck;Vad kallas rätten som består av tunna råa skivor av oxfilé?;Carpaccio;Mascarpone;Serrano;Rostbiff;1;
+
+Film på bio;En tysk ubåt under andra världskriget ger sig ut på ett uppdrag och sänker skepp men stöter på stora problem vid Gibraltar sund. Vilken film?;Rött hav;Jakten på Röd Oktober; U-571; Das Boot;3;
 Film på bio;I vilken av följande filmer gör regisssören Steven Spielberg en cameo som röst i en kom-radio?;Men in black;Gremlins;Jaws;Vanilla sky;2;
+Film på bio;Vem spelade Katniss Everdeen i filmatiseringen av romantrilogin "The Hunger Games"?;Jennifer Aniston;Emma Stone; Jennifer Lawrence; Alicia Vikander;2;
+Film på bio;Vilket år hade disneyfilmen "Pocahontas" premiär?;1994,1995,1996,1998;1;
+Film på bio;Vad heter Will Smiths rollfigur i "Men In Black"-filmerna?;Agent J;Agent K;Agent M;Agent L;0;
+Film på bio;Vilken av följande roller spelades av skådisen William Shatner?;James T.Kirk;Dwayne Hicks;Martin McFly;Luke Skywalker;0;
+Film på bio;Vem spelade den manliga huvudrollen i "Sömnlös i Seattle"(1993)?;Richard Gere;Mel Gibson;Tom Hanks;Hugh Grant;2;
+Film på bio;Vad heter filmen om svenska samer som visats på bio under 2017?;Sameblod;Samen på fjället;Sameliv;Samekärlek;0;
+Film på bio;Vilken av följande filmer om Batman gjorde INTE av Christopher Nolan?;The Dark Knight Rises;Batman Begins;Batman forever;The Dark Knight;2;
+Film på bio;Vad heter skådespelaren som spelar Jim i "American Pie"-filmerna?;Neil Patrick Harris;Jake Gyllenhaal;Jason Biggs;Sean William Scott;2;
+Film på bio;Till vilket land vad det tänkt att familjen i "Sunes sommar"(1993) skulle åka?;Thailand;Grekland;Spanien;Italien;1;
+
+
+Jorden runt;Luleå är Sveriges 22:e största stad. Men vilken placering hamnar Luleå på bland Norrlands största städer?;Störst;3:e störst;4:e störst; 10:e störst;1;
+Jorden runt;Vilket språk dominerar inom den kanadensiska provinsen Quebec?;Tyska;Inuitiska;Engelska;Franska;3;
+Jorden runt;Till vilket land hör ön Kodiak?;Kina;USA;Norge;Ryssland;1;
+Jorden runt;Vilket lands flagga har samma färger som Sveriges?;Somalias;Makedoniens;Egypten;Ukrainas; 3;
+Jorden runt;Vilken är Europas tredje största sjö?;Ladoga;Vänern;Onega;Saimaa;1;
+Jorden runt;Vilken stad var huvudstad i Japan år 1850?;Hiroshima;Shanghai;Tokyo;Kyoto;3;
+Jorden runt;Om du är i stadsdelen Taksim, vilken europeisk storstad befinner du dig i då?; Amsterdam; Belgrad;Istanbul;Budapest;2;
+Jorden runt;I vilken stad ligger Little Haiti?;New York;Miami;Los Angeles;New Jersey;1;
+
+Böcker och ord;Vad betyder prefixet "pre-"?;Vilken känd författare har skrivit "Alkemisten"(1988)?;Paulo Coelho;Umberto Eco;Paul Auster;Amos Oz;0;
+Böcker och ord;Vad arbetar du förmodligen som om använder en "kanitz"?;Tandläkare,Optiker,Murare,Sömmerska;2;
+Böcker och ord;Under vilken pseudonym skrev Victoria Benedictsson?;Axel Lundegård;Ernst Ahlgren;Fredrik Böök;Georg Brandes;1;
+Böcker och ord;Vad är en harang?;Frasrikt yttrande;Fix idé;Elakt rykte;Långsökt förklaring;0;
+Böcker och ord;Vem av följande är inte en romanfigur i Hjalmar Söderbergs "Doktor Glas"?;Arvid Stjärnblom;Helga Gregorius;Klas Recke;Pastor Gregoris;0;
+
+Sport och fritid;Hur förkortas den högsta ligan i baseball i USA?;ABL;B of A;BLA;MLB;3;
+Sport och fritid;Vilket fotbollslag vann Premier League säsongen 2010/2011?;Arsenal;Chelsea;Manchester United;Manchester City;2;
+Sport och fritid;Vilket år blev triathlon en olympisk sport?;1936;2000;1996;2012;1;
+
