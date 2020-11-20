@@ -37,8 +37,9 @@ public class Client {
                 fromServer = in.readObject();
                 if (fromServer instanceof GameRound) {
                     System.out.println(((GameRound) fromServer).getRoundQuestionList().get(0).getCategory());
+                } else if (fromServer instanceof String) {
+                    System.out.println("Server: " + fromServer);
                 }
-                System.out.println("Server: " + fromServer);
             }
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
