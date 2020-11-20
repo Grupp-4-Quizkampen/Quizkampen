@@ -1,8 +1,6 @@
 package Client;
 
 import javax.swing.*;
-import java.awt.*;
-import java.util.ArrayList;
 
 /**
  * Created by Simon Ekenberg
