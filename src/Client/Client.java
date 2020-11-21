@@ -12,19 +12,19 @@ import java.net.UnknownHostException;
 import java.util.Scanner;
 
 public class Client {
+    InetAddress adr;
+    int port = 44444;
     Player opponent;
+    Socket clientSocket;
     ObjectOutputStream out;
     ObjectInputStream in;
 
-    public Client() throws UnknownHostException {
-        InetAddress adr = InetAddress.getByName("localhost");
-        int port = 44444;
-
-        try (
-                Socket clientSocket = new Socket(adr, port);
-                ObjectOutputStream out = new ObjectOutputStream(clientSocket.getOutputStream());
-                ObjectInputStream in = new ObjectInputStream(clientSocket.getInputStream())
-        ) {
+    public Client() {
+        try {
+            adr = InetAddress.getByName("localhost");
+            clientSocket = new Socket(adr, port);
+            out = new ObjectOutputStream(clientSocket.getOutputStream());
+            in = new ObjectInputStream(clientSocket.getInputStream());
             System.out.println(" Client/Server-Setup complete\n");
 
 
