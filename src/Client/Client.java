@@ -48,7 +48,15 @@ public class Client {
         }
     }
 
-    public static void main(String[] args) throws UnknownHostException {
+    public void setPlayerName(String playerName) throws IOException {
+        out.writeObject(playerName);
+    }
+
+    public void answer(int answerIndex) {
+
+    }
+
+    public static void main(String[] args) {
         new Client();
     }
 
