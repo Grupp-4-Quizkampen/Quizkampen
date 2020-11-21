@@ -52,8 +52,8 @@ public class Client {
         out.writeObject(playerName);
     }
 
-    public void answer(int answerIndex) {
-
+    public void answer(int answerIndex) throws IOException {
+        out.writeObject(answerIndex);
     }
 
     public static void main(String[] args) {
