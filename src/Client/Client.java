@@ -8,7 +8,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.InetAddress;
 import java.net.Socket;
-import java.net.UnknownHostException;
 import java.util.Scanner;
 
 public class Client {
@@ -30,10 +29,7 @@ public class Client {
 
             // Player: output.println("WELCOME ");
 
-            System.out.println("What's your name?");
-            Scanner scanner = new Scanner(System.in);
-            String playerName = scanner.nextLine().trim();
-            out.writeObject(playerName);
+            setPlayerName("test");
 
             Object fromServer;
 
