@@ -16,8 +16,7 @@ public class Client {
     ObjectOutputStream out;
     ObjectInputStream in;
 
-    public static void main(String[] args) throws UnknownHostException {
-
+    public Client() throws UnknownHostException {
         InetAddress adr = InetAddress.getByName("localhost");
         int port = 44444;
 
@@ -26,7 +25,7 @@ public class Client {
                 ObjectOutputStream out = new ObjectOutputStream(clientSocket.getOutputStream());
                 ObjectInputStream in = new ObjectInputStream(clientSocket.getInputStream())
         ) {
-                System.out.println(" Client/Server-Setup complete\n");
+            System.out.println(" Client/Server-Setup complete\n");
 
 
             // Player: output.println("WELCOME ");
@@ -45,13 +44,16 @@ public class Client {
                 } else if (fromServer instanceof String) {
                     System.out.println("Server: " + fromServer);
                 } else if (fromServer instanceof Player) {
-
+                    opponent = (Player)fromServer;
                 }
             }
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
+    }
 
+    public static void main(String[] args) throws UnknownHostException {
+        new Client();
     }
 
 }
