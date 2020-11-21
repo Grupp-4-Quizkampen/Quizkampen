@@ -1,6 +1,7 @@
 package Client;
 
 import Server.GameRound;
+import Server.Player;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -11,6 +12,9 @@ import java.net.UnknownHostException;
 import java.util.Scanner;
 
 public class Client {
+    Player opponent;
+    ObjectOutputStream out;
+    ObjectInputStream in;
 
     public static void main(String[] args) throws UnknownHostException {
 
@@ -20,7 +24,8 @@ public class Client {
         try (
                 Socket clientSocket = new Socket(adr, port);
                 ObjectOutputStream out = new ObjectOutputStream(clientSocket.getOutputStream());
-                ObjectInputStream in = new ObjectInputStream(clientSocket.getInputStream())) {
+                ObjectInputStream in = new ObjectInputStream(clientSocket.getInputStream())
+        ) {
                 System.out.println(" Client/Server-Setup complete\n");
 
 
@@ -39,6 +44,8 @@ public class Client {
                     System.out.println(((GameRound) fromServer).getRoundQuestionList().get(0).getCategory());
                 } else if (fromServer instanceof String) {
                     System.out.println("Server: " + fromServer);
+                } else if (fromServer instanceof Player) {
+
                 }
             }
         } catch (IOException | ClassNotFoundException e) {
