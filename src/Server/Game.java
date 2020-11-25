@@ -13,8 +13,10 @@ public class Game implements Serializable {
     List<Question> unusedQuestions;
     List<Question> questionList;
 
-    int questionsPerRound = 1;
-    int numberOfRounds = 1;
+    PropertiesHandler propertiesHandler = new PropertiesHandler();
+    int questionsPerRound = propertiesHandler.getNumberOfQuestions();
+    int numberOfRounds = propertiesHandler.getNumberOfRounds();
+
     Player player1;
     Player player2;
     Path filepath = Path.of("src/Server/questions");
@@ -26,6 +28,7 @@ public class Game implements Serializable {
         player1.setActiveGame(this);
         player2.start();
         player2.setActiveGame(this);
+
 
         readFileAddToList(filepath); //move to file management
 
@@ -97,4 +100,5 @@ public class Game implements Serializable {
     public List<GameRound> getGameRounds() {
         return gameRounds;
     }
+
 }
