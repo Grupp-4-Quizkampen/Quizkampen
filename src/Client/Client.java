@@ -97,7 +97,11 @@ public class Client implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(startPanel.getStartButton())) {
-            System.out.println("hej");
+            for (JButton button : startPanel.getButtonList()) {
+                button.setEnabled(false);
+            }
+            startPanel.getStartButton().setEnabled(false);
+            startPanel.getNameField().setEnabled(false);
             connectToServer();
             new Thread(this::listenToServer).start();
         }
