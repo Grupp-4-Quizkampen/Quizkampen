@@ -43,9 +43,6 @@ public class Client implements ActionListener {
             in = new ObjectInputStream(clientSocket.getInputStream());
             System.out.println(" Client/Server-Setup complete\n");
 
-
-            // Player: output.println("WELCOME ");
-
             setPlayerName("test");
 
         } catch (IOException e) {

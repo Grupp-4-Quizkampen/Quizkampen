@@ -2,13 +2,6 @@ package Client;
 
 import javax.swing.*;
 
-/**
- * Created by Simon Ekenberg
- * Date: 2020-11-17
- * Time: 14:16
- * Project: IntelliJ IDEA
- * Copyright: MIT
- */
 public class AvatarDatabase {
     ImageIcon[] avatars = {
             new ImageIcon("src/Client/AvatarPictures/avatar1.png"),

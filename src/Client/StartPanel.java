@@ -9,13 +9,6 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Simon Ekenberg
- * Date: 2020-11-18
- * Time: 11:48
- * Project: IntelliJ IDEA
- * Copyright: MIT
- */
 public class StartPanel extends JPanel implements ActionListener {
     private JPanel namePanel = new JPanel();
     private JLabel userLabel = new JLabel("Skriv in ditt namn:");
@@ -82,25 +75,16 @@ public class StartPanel extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource().equals(startButton)){
-//            JFrame topFrame = (JFrame) SwingUtilities.getRoot(this);
-//            var parent = this.getParent();
-//            this.getParent().remove(this);
-//            parent.revalidate();
-//            client.connectToServer();
-        }
-        else {
-            for (JButton chosenAvatar : buttonList) {
-                if (e.getSource().equals(chosenAvatar)) {
-                    for (JButton btn: buttonList) {
-                        btn.setBackground(Color.WHITE);
-                    }
-                    chosenAvatar.setBackground(Color.GREEN);
-                    chosenAvatarIndex = buttonList.indexOf(chosenAvatar);
-                    hasValidAvatar = true;
-                    tryEnableStartButton();
-                    System.out.println(chosenAvatarIndex);
+        for (JButton chosenAvatar : buttonList) {
+            if (e.getSource().equals(chosenAvatar)) {
+                for (JButton btn : buttonList) {
+                    btn.setBackground(Color.WHITE);
                 }
+                chosenAvatar.setBackground(Color.GREEN);
+                chosenAvatarIndex = buttonList.indexOf(chosenAvatar);
+                hasValidAvatar = true;
+                tryEnableStartButton();
+                System.out.println(chosenAvatarIndex);
             }
         }
     }

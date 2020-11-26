@@ -1,17 +1,7 @@
 package Client;
 
-import Server.Question;
-
 import javax.swing.*;
-import java.awt.*;
 
-/**
- * Created by Simon Ekenberg
- * Date: 2020-11-18
- * Time: 20:29
- * Project: IntelliJ IDEA
- * Copyright: MIT
- */
 public class MainGUI extends JFrame{
 
     String[] answers = {
