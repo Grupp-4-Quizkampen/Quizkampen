@@ -22,6 +22,9 @@ public class Game implements Serializable {
     Path filepath = Path.of("src/Server/questions");
 
     Game(Player player1, Player player2){
+        readFileAddToList(filepath); //move to file management
+        generateQuestions();
+
         this.player1 = player1;
         this.player2 = player2;
         player1.start();
@@ -30,12 +33,9 @@ public class Game implements Serializable {
         player2.setActiveGame(this);
 
 
-        readFileAddToList(filepath); //move to file management
-
-        playRound();
     }
 
-    private void playRound() {
+    private void generateQuestions() {
         for (int i = 0; i < numberOfRounds; i++) {
             List<Question> questionsToBeAsked = randomiseQuestions();
             gameRounds.add(new GameRound(questionsToBeAsked));
@@ -86,7 +86,7 @@ public class Game implements Serializable {
                     options[i] = scan.next();
                     System.out.println(options[i]);
                 }
-                int correctAnswerIndex = scan.nextInt();
+                int correctAnswerIndex = Integer.parseInt(scan.next().trim());
                 unusedQuestions.add(new Question(category, prompt, options, correctAnswerIndex));
                 System.out.println(unusedQuestions.get(unusedQuestions.size()-1).getCategory());
             }
