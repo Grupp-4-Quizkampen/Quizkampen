@@ -37,17 +37,17 @@ public class StartPanel extends JPanel implements ActionListener {
         enterYourName.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
-                changed();
+                textFieldChanged();
             }
 
             @Override
             public void removeUpdate(DocumentEvent e) {
-                changed();
+                textFieldChanged();
             }
 
             @Override
             public void changedUpdate(DocumentEvent e) {
-                changed();
+                textFieldChanged();
             }
         });
         setLayout(new BorderLayout());
@@ -66,12 +66,12 @@ public class StartPanel extends JPanel implements ActionListener {
         startButton.setEnabled(false);
     }
 
-    public void changed() {
+    public void textFieldChanged() {
         validAvatar = enterYourName.getText().length() != 0 && enterYourName != null;
-        enableStartButton();
+        updateStartButton();
     }
 
-    public void enableStartButton(){
+    public void updateStartButton(){
         startButton.setEnabled(validAvatar && validName);
 
     }
@@ -90,7 +90,7 @@ public class StartPanel extends JPanel implements ActionListener {
                     chosenAvatar.setBackground(Color.GREEN);
                     chosenAvatarIndex = buttonList.indexOf(chosenAvatar);
                     validName = true;
-                    enableStartButton();
+                    updateStartButton();
                     System.out.println(chosenAvatarIndex);
                 }
             }
