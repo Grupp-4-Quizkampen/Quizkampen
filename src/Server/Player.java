@@ -1,7 +1,10 @@
 package Server;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Player extends Thread {
@@ -11,6 +14,7 @@ public class Player extends Thread {
     Game activeGame;
     ObjectOutputStream out;
     ObjectInputStream in;
+    List<ArrayList<Boolean>> gameResults = new ArrayList<>();
 
 
 
@@ -21,10 +25,28 @@ public class Player extends Thread {
             in = new ObjectInputStream(socket.getInputStream());  //Connects to the socket provided by Server
             out.writeObject("Welcome, to Quizkampen!");
             out.writeObject("Waiting for an opponent to connect to the game...");
+            while (true) {
+                Object fromClient;
+                try {
+                    fromClient = in.readObject();
+                    if (fromClient instanceof RoundResults) {
+                        saveResults((RoundResults)fromClient);
+                    } else if (fromClient instanceof String) {
+                        setPlayerName((String)fromClient);
+                    }
+
+                } catch (IOException | ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+            }
 
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void saveResults(RoundResults roundResults) {
+        gameResults.add(roundResults);
     }
 
     public void setPlayerName(String playerName) {
@@ -41,8 +63,6 @@ public class Player extends Thread {
             e.printStackTrace();
         }
 
-        List<Question> round1Questions =
-                activeGame.getGameRounds().get(0).getRoundQuestionList();
         GameRound currentRound = activeGame.getGameRounds().get(0);
         try {
             out.writeObject(currentRound);
