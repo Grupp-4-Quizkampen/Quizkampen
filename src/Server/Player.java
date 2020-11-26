@@ -34,7 +34,6 @@ public class Player extends Thread {
     @Override
     public void run() {
 
-    // Tråden startar bara när två spelare har anslutit till spelet.
 
 
         try {

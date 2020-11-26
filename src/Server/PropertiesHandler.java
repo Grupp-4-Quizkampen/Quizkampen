@@ -7,8 +7,9 @@ import java.util.Properties;
 
 public class PropertiesHandler {
 
-    int numberOfRounds;
-    int numberOfQuestions;
+    private int questionsPerRound;
+    private int numberOfRounds;
+
 
 
     public PropertiesHandler() {
@@ -27,7 +28,7 @@ public class PropertiesHandler {
         }
 
         numberOfRounds = Integer.parseInt(properties.getProperty("numberOfRounds", "1"));
-        numberOfQuestions = Integer.parseInt(properties.getProperty("numberOfQuestions", "1"));
+        questionsPerRound = Integer.parseInt(properties.getProperty("questionsPerRound", "1"));
 
 
     }
@@ -37,7 +38,7 @@ public class PropertiesHandler {
     }
 
     public int getNumberOfQuestions() {
-        return numberOfQuestions;
+        return questionsPerRound;
     }
 
 
