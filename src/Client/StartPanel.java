@@ -60,6 +60,7 @@ public class StartPanel extends JPanel implements ActionListener {
         }
         add(BorderLayout.CENTER, avatarPanel);
         add(BorderLayout.SOUTH, startButton);
+        startButton.addActionListener(this);
         startButton.setEnabled(false);
     }
 
