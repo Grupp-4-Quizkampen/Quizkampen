@@ -68,10 +68,10 @@ public class StartPanel extends JPanel implements ActionListener {
 
     public void textFieldChanged() {
         validAvatar = enterYourName.getText().length() != 0 && enterYourName != null;
-        updateStartButton();
+        shouldStartButtonBeEnabled();
     }
 
-    public void updateStartButton(){
+    public void shouldStartButtonBeEnabled(){
         startButton.setEnabled(validAvatar && validName);
 
     }
@@ -90,7 +90,7 @@ public class StartPanel extends JPanel implements ActionListener {
                     chosenAvatar.setBackground(Color.GREEN);
                     chosenAvatarIndex = buttonList.indexOf(chosenAvatar);
                     validName = true;
-                    updateStartButton();
+                    shouldStartButtonBeEnabled();
                     System.out.println(chosenAvatarIndex);
                 }
             }
