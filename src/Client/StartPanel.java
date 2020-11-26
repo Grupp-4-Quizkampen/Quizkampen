@@ -1,9 +1,13 @@
 package Client;
 
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Simon Ekenberg
@@ -14,34 +18,89 @@ import java.awt.event.ActionListener;
  */
 public class StartPanel extends JPanel implements ActionListener {
     private JPanel namePanel = new JPanel();
-    private JLabel userLabel = new JLabel("Enter your name:");
+    private JLabel userLabel = new JLabel("Skriv in ditt namn:");
     private JTextField enterYourName = new JTextField(20);
-    private JButton finished = new JButton("Finished");
+    private JButton startButton = new JButton("Starta spelet");
     private JPanel avatarPanel = new JPanel();
-    private JButton avatarPictures = new JButton();
     Avatar avatar = new Avatar();
+    private int chosenAvatarIndex = 0;
+    List<JButton> buttonList = new ArrayList<>();
 
-    StartPanel(){
+    private boolean validName, validAvatar;
+
+    StartPanel() {
         namePanel.setLayout(new FlowLayout());
         namePanel.add(userLabel);
         namePanel.add(enterYourName);
-       setLayout(new BorderLayout());
-       add(BorderLayout.NORTH, namePanel);
-       avatarPanel.setLayout(new GridLayout(2,4));
+        enterYourName.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                changed();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                changed();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                changed();
+            }
+        });
+        setLayout(new BorderLayout());
+        add(BorderLayout.NORTH, namePanel);
+        avatarPanel.setLayout(new GridLayout(2, 4));
         for (int i = 0; i < avatar.avatars.length; i++) {
             JButton button = new JButton();
+            buttonList.add(button);
             button.setIcon(avatar.avatars[i]);
             button.addActionListener(this);
             avatarPanel.add(button);
         }
         add(BorderLayout.CENTER, avatarPanel);
-        add(BorderLayout.SOUTH, finished);
+        add(BorderLayout.SOUTH, startButton);
+        startButton.setEnabled(false);
+    }
+
+    public void changed() {
+        if (enterYourName.getText().length() == 0 || enterYourName == null) {
+            validAvatar = false;
+        }
+        else {
+            validAvatar = true;
+        }
+        enableStartButton();
+    }
+
+    public void enableStartButton(){
+        if(validAvatar && validName){
+            startButton.setEnabled(true);
+        }
+        else
+            startButton.setEnabled(false);
+
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        if(e.getSource().equals(startButton)){
+            setVisible(false);
+        }
+        else {
+            for (JButton chosenAvatar : buttonList) {
+                if (e.getSource().equals(chosenAvatar)) {
+                    for (JButton btn: buttonList) {
+                        btn.setBackground(Color.WHITE);
+                    }
+                    chosenAvatar.setBackground(Color.GREEN);
+                    chosenAvatarIndex = buttonList.indexOf(chosenAvatar);
+                    validName = true;
+                    enableStartButton();
+                    System.out.println(chosenAvatarIndex);
+                }
+            }
+        }
 
     }
-
 }
-
