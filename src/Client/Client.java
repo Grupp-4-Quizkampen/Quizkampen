@@ -3,6 +3,7 @@ package Client;
 import Server.GameRound;
 import Server.Player;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -17,9 +18,10 @@ public class Client {
     Socket clientSocket;
     ObjectOutputStream out;
     ObjectInputStream in;
+    private JFrame gui;
 
     public Client() {
-        connectToServer();
+        gui = new MainGUI(this);
     }
 
     public void connectToServer() {

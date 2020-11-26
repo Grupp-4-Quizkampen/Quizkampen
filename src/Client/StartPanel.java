@@ -28,7 +28,7 @@ public class StartPanel extends JPanel implements ActionListener {
 
     private boolean validName, validAvatar;
 
-    StartPanel() {
+    StartPanel(Client client) {
         namePanel.setLayout(new FlowLayout());
         namePanel.add(userLabel);
         namePanel.add(enterYourName);

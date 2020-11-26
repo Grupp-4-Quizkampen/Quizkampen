@@ -25,16 +25,16 @@ public class MainGUI extends JFrame{
     int width = 500;
     int height = 500;
 
-    public MainGUI() {
+    public MainGUI(Client client) {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
         mainPanel.setLayout(new BorderLayout());
-        mainPanel.add(BorderLayout.CENTER, new GamePanel(new Question("Färger","Vilken färg är mest blå?", answers, 0)));
+        mainPanel.add(BorderLayout.CENTER, new StartPanel(client));
         add(mainPanel);
         setSize(width, height);
     }
     public static void main(String[] args) {
-       new MainGUI();
+       new MainGUI(new Client());
 
 
     }
