@@ -67,21 +67,12 @@ public class StartPanel extends JPanel implements ActionListener {
     }
 
     public void changed() {
-        if (enterYourName.getText().length() == 0 || enterYourName == null) {
-            validAvatar = false;
-        }
-        else {
-            validAvatar = true;
-        }
+        validAvatar = enterYourName.getText().length() != 0 && enterYourName != null;
         enableStartButton();
     }
 
     public void enableStartButton(){
-        if(validAvatar && validName){
-            startButton.setEnabled(true);
-        }
-        else
-            startButton.setEnabled(false);
+        startButton.setEnabled(validAvatar && validName);
 
     }
 
