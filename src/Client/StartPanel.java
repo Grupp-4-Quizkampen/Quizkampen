@@ -25,10 +25,12 @@ public class StartPanel extends JPanel implements ActionListener {
     Avatar avatar = new Avatar();
     private int chosenAvatarIndex = 0;
     List<JButton> buttonList = new ArrayList<>();
+    Client client;
 
     private boolean validName, validAvatar;
 
     StartPanel(Client client) {
+        this.client = client;
         namePanel.setLayout(new FlowLayout());
         namePanel.add(userLabel);
         namePanel.add(enterYourName);
@@ -86,7 +88,7 @@ public class StartPanel extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource().equals(startButton)){
-            setVisible(false);
+            client.connectToServer();
         }
         else {
             for (JButton chosenAvatar : buttonList) {
