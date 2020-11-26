@@ -50,11 +50,13 @@ public class StartPanel extends JPanel implements ActionListener {
         });
         setLayout(new BorderLayout());
         add(BorderLayout.NORTH, namePanel);
+        JPanel avatarPanel = new JPanel();
         avatarPanel.setLayout(new GridLayout(2, 4));
-        for (int i = 0; i < avatarDatabase.avatars.length; i++) {
+        ImageIcon[] avatars = AvatarDatabase.getAvatars();
+        for (ImageIcon avatar : avatars) {
             JButton button = new JButton();
             buttonList.add(button);
-            button.setIcon(avatarDatabase.avatars[i]);
+            button.setIcon(avatar);
             button.addActionListener(this);
             avatarPanel.add(button);
         }
@@ -69,7 +71,7 @@ public class StartPanel extends JPanel implements ActionListener {
         tryEnableStartButton();
     }
 
-    public void tryEnableStartButton(){
+    public void tryEnableStartButton() {
         startButton.setEnabled(hasValidName && hasValidAvatar);
     }
 
