@@ -9,8 +9,9 @@ public class Player extends Thread {
     Socket socket;
     String playerName;
     Game activeGame;
-    ObjectInputStream in;
     ObjectOutputStream out;
+    ObjectInputStream in;
+
 
 
     public Player(Socket socket) {

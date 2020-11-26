@@ -22,5 +22,17 @@ public class Question implements Serializable {
     public String getCategory() {
         return category;
     }
+
+    public String getPrompt() {
+        return prompt;
+    }
+
+    public String[] getOptions() {
+        return options;
+    }
+
+    public int getCorrectOptionIndex() {
+        return correctOptionIndex;
+    }
 }
 
