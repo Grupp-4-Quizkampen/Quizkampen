@@ -10,14 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StartPanel extends JPanel implements ActionListener {
-    private JPanel namePanel = new JPanel();
-    private JLabel userLabel = new JLabel("Skriv in ditt namn:");
-    private JTextField nameField = new JTextField(20);
-    private JButton startButton = new JButton("Starta spelet");
-    private JPanel avatarPanel = new JPanel();
-    AvatarDatabase avatarDatabase = new AvatarDatabase();
+    private final JTextField nameField = new JTextField(20);
+    private final JButton startButton = new JButton("Starta spelet");
     private int chosenAvatarIndex = 0;
-    List<JButton> buttonList = new ArrayList<>();
+    private final List<JButton> buttonList = new ArrayList<>();
     Client client;
 //    JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
 
@@ -29,8 +25,10 @@ public class StartPanel extends JPanel implements ActionListener {
 
     StartPanel(Client client) {
         this.client = client;
+        JPanel namePanel = new JPanel();
         namePanel.setLayout(new FlowLayout());
-        namePanel.add(userLabel);
+        JLabel enterNameLabel = new JLabel("Skriv in ditt namn:");
+        namePanel.add(enterNameLabel);
         namePanel.add(nameField);
         nameField.getDocument().addDocumentListener(new DocumentListener() {
             @Override

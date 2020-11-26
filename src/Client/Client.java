@@ -99,16 +99,7 @@ public class Client implements ActionListener {
         if (e.getSource().equals(startPanel.getStartButton())) {
             System.out.println("hej");
             connectToServer();
-            System.out.println("då");
             new Thread(this::listenToServer).start();
-//            listenToServer();
-//            listenToServer();
-//            listenToServer();
-//            listenToServer();
-//            mainPanel.remove(startPanel);
-//            JLabel hi = new JLabel("hi");
-//            mainPanel.add(hi);
-//            gui.revalidate();
         }
     }
 }

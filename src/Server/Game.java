@@ -56,10 +56,7 @@ public class Game implements Serializable {
         unusedQuestions.remove(firstQuestion);
 
         for (Question question : unusedQuestions) {
-            if (
-                    question.getCategory()
-                    .equalsIgnoreCase(firstQuestion
-                            .getCategory())) {
+            if (question.getCategory().equalsIgnoreCase(firstQuestion.getCategory())) {
                 roundQuestionList.add(question);
                 unusedQuestions.remove(question);
             }
