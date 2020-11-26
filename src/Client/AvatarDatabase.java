@@ -1,7 +1,6 @@
 package Client;
 
 import javax.swing.*;
-import java.lang.reflect.Array;
 
 public class AvatarDatabase {
     ImageIcon[] avatars = {

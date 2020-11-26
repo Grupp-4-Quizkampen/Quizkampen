@@ -31,6 +31,7 @@ public class Client implements ActionListener {
         mainFrame.add(mainPanel);
         mainPanel.setLayout(new BorderLayout());
         startPanel = new StartPanel(this);
+        gamePanel = new GamePanel(this);
         mainPanel.add(BorderLayout.CENTER, startPanel);
         mainFrame.revalidate();
     }
@@ -58,18 +59,11 @@ public class Client implements ActionListener {
 
                 fromServer = in.readObject();
                 if (fromServer instanceof GameRound) {
-                    GameRound gameRound = (GameRound) fromServer;
-                    System.out.println(gameRound.getRoundQuestionList().get(0).getCategory());
+                    GameRound nextRound = (GameRound) fromServer;
                     mainPanel.remove(startPanel);
-//                    JLabel hi = new JLabel("hi");
-//                    mainPanel.add(hi);
-//                    gui.revalidate();
-                    mainPanel.add(BorderLayout.CENTER, new GamePanel(gameRound.getRoundQuestionList().get(0)));
+                    mainPanel.add(gamePanel);
+                    gamePanel.nextRound(nextRound);
                     mainPanel.revalidate();
-                    System.out.println("crash?");
-                    Scanner scanner = new Scanner(System.in);
-                    String something = scanner.nextLine();
-                    System.out.println(something);
                 } else if (fromServer instanceof String) {
                     System.out.println("Server: " + fromServer);
                 } else if (fromServer instanceof Player) {
@@ -82,12 +76,20 @@ public class Client implements ActionListener {
         }
     }
 
-    public void setPlayerName(String playerName) throws IOException {
-        out.writeObject(playerName);
+    public void setPlayerName(String playerName) {
+        try {
+            out.writeObject(playerName);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void answer(int answerIndex) throws IOException {
-        out.writeObject(answerIndex);
+    public void answeredCorrectly(boolean isCorrectAnswer) {
+        try {
+            out.writeObject(isCorrectAnswer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void main(String[] args) {

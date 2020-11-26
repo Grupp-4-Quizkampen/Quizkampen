@@ -15,7 +15,6 @@ public class StartPanel extends JPanel implements ActionListener {
     private int chosenAvatarIndex = 0;
     private final List<JButton> buttonList = new ArrayList<>();
     Client client;
-//    JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
 
     public JTextField getNameField() {
         return nameField;
