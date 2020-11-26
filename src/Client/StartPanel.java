@@ -19,22 +19,27 @@ import java.util.List;
 public class StartPanel extends JPanel implements ActionListener {
     private JPanel namePanel = new JPanel();
     private JLabel userLabel = new JLabel("Skriv in ditt namn:");
-    private JTextField enterYourName = new JTextField(20);
+    private JTextField nameField = new JTextField(20);
     private JButton startButton = new JButton("Starta spelet");
     private JPanel avatarPanel = new JPanel();
     AvatarDatabase avatarDatabase = new AvatarDatabase();
     private int chosenAvatarIndex = 0;
     List<JButton> buttonList = new ArrayList<>();
     Client client;
+//    JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
 
-    private boolean hasValidName, hasValidAvatar;
+    public JButton getStartButton() {
+        return startButton;
+    }
+
+    private boolean hasValidAvatar, hasValidName;
 
     StartPanel(Client client) {
         this.client = client;
         namePanel.setLayout(new FlowLayout());
         namePanel.add(userLabel);
-        namePanel.add(enterYourName);
-        enterYourName.getDocument().addDocumentListener(new DocumentListener() {
+        namePanel.add(nameField);
+        nameField.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
                 textFieldChanged();
@@ -62,23 +67,27 @@ public class StartPanel extends JPanel implements ActionListener {
         }
         add(BorderLayout.CENTER, avatarPanel);
         add(BorderLayout.SOUTH, startButton);
-        startButton.addActionListener(this);
+        startButton.addActionListener(client);
         startButton.setEnabled(false);
     }
 
     public void textFieldChanged() {
-        hasValidAvatar = enterYourName.getText().length() != 0 && enterYourName != null;
+        hasValidName = nameField.getText().length() != 0;
         tryEnableStartButton();
     }
 
     public void tryEnableStartButton(){
-        startButton.setEnabled(hasValidAvatar && hasValidName);
+        startButton.setEnabled(hasValidName && hasValidAvatar);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource().equals(startButton)){
-            client.connectToServer();
+//            JFrame topFrame = (JFrame) SwingUtilities.getRoot(this);
+//            var parent = this.getParent();
+//            this.getParent().remove(this);
+//            parent.revalidate();
+//            client.connectToServer();
         }
         else {
             for (JButton chosenAvatar : buttonList) {
@@ -88,12 +97,11 @@ public class StartPanel extends JPanel implements ActionListener {
                     }
                     chosenAvatar.setBackground(Color.GREEN);
                     chosenAvatarIndex = buttonList.indexOf(chosenAvatar);
-                    hasValidName = true;
+                    hasValidAvatar = true;
                     tryEnableStartButton();
                     System.out.println(chosenAvatarIndex);
                 }
             }
         }
-
     }
 }

@@ -21,20 +21,16 @@ public class MainGUI extends JFrame{
             "Grön"
     };
 
-    private JPanel mainPanel = new JPanel();
     int width = 500;
     int height = 500;
 
-    public MainGUI(Client client) {
+    public MainGUI() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
-        mainPanel.setLayout(new BorderLayout());
-        mainPanel.add(BorderLayout.CENTER, new StartPanel(client));
-        add(mainPanel);
         setSize(width, height);
     }
     public static void main(String[] args) {
-       new MainGUI(new Client());
+       new MainGUI();
 
 
     }
