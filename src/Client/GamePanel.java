@@ -2,6 +2,7 @@ package Client;
 
 import Server.GameRound;
 import Server.Question;
+import Server.RoundResults;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,6 +21,8 @@ public class GamePanel extends JPanel implements ActionListener {
     private Client client;
     private List<JButton> buttonList = new ArrayList<>();
     private Question question;
+    private RoundResults roundResults = new RoundResults();
+    private GameRound gameRound;
 
     public List<JButton> getButtonList() {
         return buttonList;
@@ -50,6 +53,7 @@ public class GamePanel extends JPanel implements ActionListener {
     }
 
     public void nextRound(GameRound nextRound) {
+        this.gameRound = nextRound;
         for (Question question : nextRound.getRoundQuestionList()) {
             this.question = question;
             ask();
@@ -76,7 +80,10 @@ public class GamePanel extends JPanel implements ActionListener {
             revalidate();
 
             //Check if the clicked button is in the correct index of the buttonList
-            client.answeredCorrectly(e.getSource().equals(buttonList.get(question.getCorrectOptionIndex())));
+            roundResults.add(e.getSource().equals(buttonList.get(question.getCorrectOptionIndex())));
+            if (roundResults.size() == gameRound.getRoundQuestionList().size()) {
+                client.submitResults(roundResults);
+            }
             if (e.getSource().equals(buttonList.get(question.getCorrectOptionIndex()))) {
                 System.out.println("Rätt svar");
             }

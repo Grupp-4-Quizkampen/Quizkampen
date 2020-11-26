@@ -2,6 +2,7 @@ package Client;
 
 import Server.GameRound;
 import Server.Player;
+import Server.RoundResults;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,6 +13,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.InetAddress;
 import java.net.Socket;
+import java.util.List;
 import java.util.Scanner;
 
 public class Client implements ActionListener {
@@ -84,9 +86,9 @@ public class Client implements ActionListener {
         }
     }
 
-    public void answeredCorrectly(boolean isCorrectAnswer) {
+    public void submitResults(RoundResults roundResults) {
         try {
-            out.writeObject(isCorrectAnswer);
+            out.writeObject(roundResults);
         } catch (IOException e) {
             e.printStackTrace();
         }
