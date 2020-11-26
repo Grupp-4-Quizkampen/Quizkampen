@@ -9,7 +9,7 @@ import javax.swing.*;
  * Project: IntelliJ IDEA
  * Copyright: MIT
  */
-public class Avatar {
+public class AvatarDatabase {
     ImageIcon[] avatars = {
             new ImageIcon("src/Client/AvatarPictures/avatar1.png"),
             new ImageIcon("src/Client/AvatarPictures/avatar2.png"),

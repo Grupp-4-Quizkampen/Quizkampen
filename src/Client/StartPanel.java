@@ -22,7 +22,7 @@ public class StartPanel extends JPanel implements ActionListener {
     private JTextField enterYourName = new JTextField(20);
     private JButton startButton = new JButton("Starta spelet");
     private JPanel avatarPanel = new JPanel();
-    Avatar avatar = new Avatar();
+    AvatarDatabase avatarDatabase = new AvatarDatabase();
     private int chosenAvatarIndex = 0;
     List<JButton> buttonList = new ArrayList<>();
     Client client;
@@ -53,10 +53,10 @@ public class StartPanel extends JPanel implements ActionListener {
         setLayout(new BorderLayout());
         add(BorderLayout.NORTH, namePanel);
         avatarPanel.setLayout(new GridLayout(2, 4));
-        for (int i = 0; i < avatar.avatars.length; i++) {
+        for (int i = 0; i < avatarDatabase.avatars.length; i++) {
             JButton button = new JButton();
             buttonList.add(button);
-            button.setIcon(avatar.avatars[i]);
+            button.setIcon(avatarDatabase.avatars[i]);
             button.addActionListener(this);
             avatarPanel.add(button);
         }
@@ -68,12 +68,11 @@ public class StartPanel extends JPanel implements ActionListener {
 
     public void textFieldChanged() {
         hasValidAvatar = enterYourName.getText().length() != 0 && enterYourName != null;
-        updateStartButtonStatus();
+        tryEnableStartButton();
     }
 
-    public void updateStartButtonStatus(){
+    public void tryEnableStartButton(){
         startButton.setEnabled(hasValidAvatar && hasValidName);
-
     }
 
     @Override
@@ -90,7 +89,7 @@ public class StartPanel extends JPanel implements ActionListener {
                     chosenAvatar.setBackground(Color.GREEN);
                     chosenAvatarIndex = buttonList.indexOf(chosenAvatar);
                     hasValidName = true;
-                    updateStartButtonStatus();
+                    tryEnableStartButton();
                     System.out.println(chosenAvatarIndex);
                 }
             }
