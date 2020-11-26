@@ -19,6 +19,10 @@ public class Client {
     ObjectInputStream in;
 
     public Client() {
+        connectToServer();
+    }
+
+    public void connectToServer() {
         try {
             adr = InetAddress.getByName("localhost");
             clientSocket = new Socket(adr, port);
