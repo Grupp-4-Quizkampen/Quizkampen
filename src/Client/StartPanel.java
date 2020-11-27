@@ -9,20 +9,13 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Simon Ekenberg
- * Date: 2020-11-18
- * Time: 11:48
- * Project: IntelliJ IDEA
- * Copyright: MIT
- */
 public class StartPanel extends JPanel implements ActionListener {
     private JPanel namePanel = new JPanel();
     private JLabel userLabel = new JLabel("Skriv in ditt namn:");
     private JTextField enterYourName = new JTextField(20);
     private JButton startButton = new JButton("Starta spelet");
     private JPanel avatarPanel = new JPanel();
-    Avatar avatar = new Avatar();
+    AvatarDatabase avatarDatabase = new AvatarDatabase();
     private int chosenAvatarIndex = 0;
     List<JButton> buttonList = new ArrayList<>();
     Client client;
@@ -53,10 +46,10 @@ public class StartPanel extends JPanel implements ActionListener {
         setLayout(new BorderLayout());
         add(BorderLayout.NORTH, namePanel);
         avatarPanel.setLayout(new GridLayout(2, 4));
-        for (int i = 0; i < avatar.avatars.length; i++) {
+        for (int i = 0; i < avatarDatabase.avatars.length; i++) {
             JButton button = new JButton();
             buttonList.add(button);
-            button.setIcon(avatar.avatars[i]);
+            button.setIcon(avatarDatabase.avatars[i]);
             button.addActionListener(this);
             avatarPanel.add(button);
         }

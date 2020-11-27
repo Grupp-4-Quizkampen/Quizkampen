@@ -1,40 +1,31 @@
 package Client;
 
-import Server.Game;
-
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 
-/**
- * Created by Simon Ekenberg
- * Date: 2020-11-18
- * Time: 11:48
- * Project: IntelliJ IDEA
- * Copyright: MIT
- */
 public class ResultPanel extends JPanel{
     int numberOfRounds = 2;
     int questionsPerRound = 2;
-    Avatar avatar = new Avatar();
+    AvatarDatabase avatarDatabase = new AvatarDatabase();
     Border border = new LineBorder(Color.BLACK, 1, false);
 
     JPanel centerPanel = new JPanel();
-    ImageIcon centerIcon = avatar.avatars[1];
+    ImageIcon centerIcon = avatarDatabase.avatars[1];
     JPanel centerScore = new JPanel();
     JLabel scoreLabel = new JLabel("Poäng: 3-2");
     JPanel centerHistory = new JPanel();
 
     JPanel player1 = new JPanel();
     JLabel player1Label = new JLabel("Spelare 1");
-    ImageIcon player1Icon = avatar.avatars[0];
+    ImageIcon player1Icon = avatarDatabase.avatars[0];
     JPanel player1Header = new JPanel();
     JPanel player1History = new JPanel();
 
     JPanel player2 = new JPanel();
     JLabel player2Label = new JLabel("Spelare 2");
-    ImageIcon player2Icon = avatar.avatars[1];
+    ImageIcon player2Icon = avatarDatabase.avatars[1];
     JPanel player2Header = new JPanel();
     JPanel player2History = new JPanel();
 
