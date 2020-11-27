@@ -13,6 +13,5 @@ public class AvatarDatabase {
             new ImageIcon("src/Client/AvatarPictures/avatar7.png"),
             new ImageIcon("src/Client/AvatarPictures/avatar8.png")
     };
-
 }
 
