@@ -107,11 +107,6 @@ public class Client implements ActionListener {
             startPanel.getStartButton().setEnabled(false);
             startPanel.getNameField().setEnabled(false);
             connectToServer();
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException interruptedException) {
-                interruptedException.printStackTrace();
-            }
             new Thread(this::listenToServer).start();
         }
     }

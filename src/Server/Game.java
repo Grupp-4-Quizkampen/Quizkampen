@@ -23,7 +23,7 @@ public class Game implements Serializable {
 
     Game(Player player1, Player player2){
         readFileAddToList(filepath); //move to file management
-        generateQuestions();
+        generateGameRounds();
 
         this.player1 = player1;
         this.player2 = player2;
@@ -35,16 +35,16 @@ public class Game implements Serializable {
 
     }
 
-    private void generateQuestions() {
+    private void generateGameRounds() {
         for (int i = 0; i < numberOfRounds; i++) {
-            List<Question> questionsToBeAsked = randomiseQuestions();
+            List<Question> questionsToBeAsked = generateQuestions();
             gameRounds.add(new GameRound(questionsToBeAsked));
         }
 
 
     }
 
-    private List<Question> randomiseQuestions() {
+    private List<Question> generateQuestions() {
         if (unusedQuestions.size() == 0) {
             Collections.copy(unusedQuestions, questionList);
         }

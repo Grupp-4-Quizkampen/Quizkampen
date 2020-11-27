@@ -61,13 +61,12 @@ public class Player extends Thread {
     public void run() {
         try {
             out.writeObject("All players are connected, we are ready to play!");
-            //Client asks for playerName
-            playerName = (String)in.readObject();
-        } catch (IOException | ClassNotFoundException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
         GameRound currentRound = activeGame.getGameRounds().get(0);
+        System.out.println("Question sent");
         try {
             out.writeObject(currentRound);
         } catch (IOException e) {
