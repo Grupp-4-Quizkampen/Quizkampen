@@ -79,6 +79,7 @@ public class StartPanel extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource().equals(startButton)){
+            setVisible(false);
             client.connectToServer();
         }
         else {

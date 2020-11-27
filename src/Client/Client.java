@@ -43,6 +43,8 @@ public class Client {
                 fromServer = in.readObject();
                 if (fromServer instanceof GameRound) {
                     System.out.println(((GameRound) fromServer).getRoundQuestionList().get(0).getCategory());
+                    GameRound gameRound = (GameRound) fromServer;
+                    gui.add(new GamePanel(gameRound.getRoundQuestionList().get(0)));
                 } else if (fromServer instanceof String) {
                     System.out.println("Server: " + fromServer);
                 } else if (fromServer instanceof Player) {

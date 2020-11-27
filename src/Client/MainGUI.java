@@ -29,12 +29,13 @@ public class MainGUI extends JFrame{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
         mainPanel.setLayout(new BorderLayout());
-        mainPanel.add(BorderLayout.CENTER, new StartPanel(client));
+     //   mainPanel.add(BorderLayout.CENTER, new StartPanel(client));
+        mainPanel.add(BorderLayout.CENTER, new ResultPanel());
         add(mainPanel);
         setSize(width, height);
     }
     public static void main(String[] args) {
-       new MainGUI(new Client());
+       new Client();
 
 
     }
