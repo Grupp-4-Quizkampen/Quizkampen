@@ -25,23 +25,27 @@ public class Player extends Thread {
             in = new ObjectInputStream(socket.getInputStream());  //Connects to the socket provided by Server
             out.writeObject("Welcome, to Quizkampen!");
             out.writeObject("Waiting for an opponent to connect to the game...");
-            while (true) {
-                Object fromClient;
-                try {
-                    fromClient = in.readObject();
-                    if (fromClient instanceof RoundResults) {
-                        saveResults((RoundResults)fromClient);
-                    } else if (fromClient instanceof String) {
-                        setPlayerName((String)fromClient);
-                    }
-
-                } catch (IOException | ClassNotFoundException e) {
-                    e.printStackTrace();
-                }
-            }
+            new Thread(this::listenToClient).start();
 
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void listenToClient() {
+        while (true) {
+            Object fromClient;
+            try {
+                fromClient = in.readObject();
+                if (fromClient instanceof RoundResults) {
+                    saveResults((RoundResults)fromClient);
+                } else if (fromClient instanceof String) {
+                    setPlayerName((String)fromClient);
+                }
+
+            } catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace();
+            }
         }
     }
 
