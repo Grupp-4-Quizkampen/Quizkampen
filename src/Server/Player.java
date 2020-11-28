@@ -15,7 +15,7 @@ public class Player extends Thread {
     ObjectOutputStream out;
     ObjectInputStream in;
     List<ArrayList<Boolean>> gameResults = new ArrayList<>();
-
+    public Player opponent;
 
 
     public Player(Socket socket) {
@@ -39,6 +39,7 @@ public class Player extends Thread {
                 fromClient = in.readObject();
                 if (fromClient instanceof RoundResults) {
                     saveResults((RoundResults)fromClient);
+                    opponent.recieveRoundResults((RoundResults)fromClient);
                 } else if (fromClient instanceof String) {
                     setPlayerName((String)fromClient);
                 }
@@ -46,6 +47,14 @@ public class Player extends Thread {
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    private void recieveRoundResults(RoundResults roundResults) {
+        try {
+            out.writeObject(roundResults);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

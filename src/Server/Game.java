@@ -25,8 +25,12 @@ public class Game implements Serializable {
         readFileAddToList(filepath); //move to file management
         generateGameRounds();
 
+        player1.opponent = player2;
+        player2.opponent = player1;
+
         this.player1 = player1;
         this.player2 = player2;
+
         player1.start();
         player1.setActiveGame(this);
         player2.start();

@@ -27,6 +27,7 @@ public class Client implements ActionListener {
     JPanel mainPanel = new JPanel();
     StartPanel startPanel;
     GamePanel gamePanel;
+    ResultPanel resultPanel;
 
     public Client() {
         mainFrame = new MainGUI();
@@ -34,6 +35,7 @@ public class Client implements ActionListener {
         mainPanel.setLayout(new BorderLayout());
         startPanel = new StartPanel(this);
         gamePanel = new GamePanel(this);
+        resultPanel = new ResultPanel(this);
         mainPanel.add(BorderLayout.CENTER, startPanel);
         mainFrame.revalidate();
     }
@@ -70,6 +72,11 @@ public class Client implements ActionListener {
                     System.out.println("Server: " + fromServer);
                 } else if (fromServer instanceof Player) {
                     opponent = (Player) fromServer;
+                }   else if (fromServer instanceof RoundResults) {
+                    mainPanel.remove(gamePanel);
+                    mainPanel.add();
+                    gamePanel.nextRound(nextRound);
+                    mainPanel.revalidate();
                 }
 
             } catch (IOException | ClassNotFoundException e) {
