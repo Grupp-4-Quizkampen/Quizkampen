@@ -35,7 +35,7 @@ public class Client implements ActionListener {
         mainPanel.setLayout(new BorderLayout());
         startPanel = new StartPanel(this);
         gamePanel = new GamePanel(this);
-        resultPanel = new ResultPanel(this);
+//        resultPanel = new ResultPanel(this);
         mainPanel.add(BorderLayout.CENTER, startPanel);
         mainFrame.revalidate();
     }
@@ -74,8 +74,8 @@ public class Client implements ActionListener {
                     opponent = (Player) fromServer;
                 }   else if (fromServer instanceof RoundResults) {
                     mainPanel.remove(gamePanel);
-                    mainPanel.add();
-                    gamePanel.nextRound(nextRound);
+//                    mainPanel.add();
+//                    gamePanel.nextRound(nextRound);
                     mainPanel.revalidate();
                 }
 

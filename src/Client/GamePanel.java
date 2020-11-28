@@ -73,6 +73,7 @@ public class GamePanel extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(nextQuestionButton)) {
             setVisible(false);
+
         } else {
             revealAnswer();
             informationPanel.remove(categoryLabel);
