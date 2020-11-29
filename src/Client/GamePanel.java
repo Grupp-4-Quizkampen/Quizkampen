@@ -76,6 +76,9 @@ public class GamePanel extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(nextQuestionButton)) {
+            informationPanel.remove(nextQuestionButton);
+            informationPanel.add(categoryLabel);
+            revalidate();
             askNextQuestion();
         } else {
             revealAnswer();
@@ -90,6 +93,9 @@ public class GamePanel extends JPanel implements ActionListener {
             }
             if (e.getSource().equals(buttonList.get(question.getCorrectOptionIndex()))) {
                 System.out.println("Rätt svar");
+            }
+            if (currentQuestionIndex+1 == gameRound.getRoundQuestionList().size()) {
+                nextQuestionButton.setEnabled(false);
             }
         }
     }
