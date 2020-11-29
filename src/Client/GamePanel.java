@@ -9,13 +9,6 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Simon Ekenberg
- * Date: 2020-11-18
- * Time: 11:48
- * Project: IntelliJ IDEA
- * Copyright: MIT
- */
 public class GamePanel extends JPanel implements ActionListener {
     private JPanel questionPanel = new JPanel();
     private JPanel answerGrid = new JPanel();
