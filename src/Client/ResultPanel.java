@@ -17,7 +17,7 @@ import java.awt.*;
 public class ResultPanel extends JPanel{
     int numberOfRounds = 2;
     int questionsPerRound = 2;
-    Avatar avatar = new Avatar();
+    AvatarDatabase avatar = new AvatarDatabase();
     Border border = new LineBorder(Color.BLACK, 1, false);
 
     JPanel centerPanel = new JPanel();
