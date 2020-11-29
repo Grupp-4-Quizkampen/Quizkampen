@@ -14,7 +14,7 @@ public class Player extends Thread {
     Game activeGame;
     ObjectOutputStream out;
     ObjectInputStream in;
-    List<ArrayList<Boolean>> gameResults = new ArrayList<>();
+    ArrayList<RoundResults> roundResults = new ArrayList<>();
     public Player opponent;
 
 
@@ -38,8 +38,20 @@ public class Player extends Thread {
             try {
                 fromClient = in.readObject();
                 if (fromClient instanceof RoundResults) {
-                    saveResults((RoundResults)fromClient);
-                    opponent.recieveRoundResults((RoundResults)fromClient);
+
+                    // save round results, to be able to check for later
+                    roundResults.add((RoundResults)fromClient);
+
+                    // check if opponent has stored round results
+                    var oppentsRoundResults = opponent.roundResults.get(activeGame.currentRoundIndex);
+                    if (oppentsRoundResults != null) {
+
+                        // ok yey, both players has finished round and ready to recieve results from their opponents
+                        opponent.recieveRoundResults((RoundResults)fromClient);
+                        recieveRoundResults(oppentsRoundResults);
+                    }
+
+
                 } else if (fromClient instanceof String) {
                     setPlayerName((String)fromClient);
                 }
@@ -56,10 +68,6 @@ public class Player extends Thread {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    private void saveResults(RoundResults roundResults) {
-        gameResults.add(roundResults);
     }
 
     public void setPlayerName(String playerName) {
