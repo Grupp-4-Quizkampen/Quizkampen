@@ -15,6 +15,7 @@ public class Player extends Thread implements Serializable {
     ObjectInputStream in;
     ArrayList<RoundResults> roundResultsList = new ArrayList<>();
     public Player opponent;
+    PlayerData playerData;
 
 
     public Player(Socket socket) {
@@ -50,8 +51,8 @@ public class Player extends Thread implements Serializable {
                     }
 
 
-                } else if (fromClient instanceof String) {
-                    setPlayerName((String)fromClient);
+                } else if (fromClient instanceof PlayerData) {
+                    setPlayerData((PlayerData)fromClient);
                 }
 
             } catch (IOException | ClassNotFoundException e) {
@@ -68,8 +69,8 @@ public class Player extends Thread implements Serializable {
         }
     }
 
-    public void setPlayerName(String playerName) {
-        this.playerName = playerName;
+    public void setPlayerData(PlayerData playerData) {
+        this.playerData = playerData;
     }
 
     @Override

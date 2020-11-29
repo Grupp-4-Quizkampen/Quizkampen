@@ -2,6 +2,7 @@ package Client;
 
 import Server.GameRound;
 import Server.Player;
+import Server.PlayerData;
 import Server.RoundResults;
 
 import javax.swing.*;
@@ -26,6 +27,8 @@ public class Client implements ActionListener {
     StartPanel startPanel;
     GamePanel gamePanel;
     ResultPanel resultPanel;
+    PlayerData localPlayerData;
+    PlayerData opponentPlayerData;
 
     public Client() {
         mainFrame = new MainGUI();
@@ -48,7 +51,8 @@ public class Client implements ActionListener {
             in = new ObjectInputStream(clientSocket.getInputStream());
             System.out.println(" Client/Server-Setup complete\n");
 
-            setPlayerName("test");
+            localPlayerData = new PlayerData(startPanel.getName(), startPanel.getChosenAvatarIndex());
+            sendPlayerData();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -72,11 +76,13 @@ public class Client implements ActionListener {
                     System.out.println("Server: " + fromServer);
                 } else if (fromServer instanceof Player) {
                     opponent = (Player) fromServer;
-                }   else if (fromServer instanceof RoundResults) {
+                } else if (fromServer instanceof RoundResults) {
                     mainPanel.remove(gamePanel);
-                    resultPanel.updateOpponentResults((RoundResults)fromServer);
+                    resultPanel.updateOpponentResults((RoundResults) fromServer);
                     mainPanel.add(resultPanel);
                     mainPanel.revalidate();
+                } else if (fromServer instanceof PlayerData) {
+                    opponentPlayerData = (PlayerData)fromServer;
                 }
 
             } catch (IOException | ClassNotFoundException e) {
@@ -85,9 +91,9 @@ public class Client implements ActionListener {
         }
     }
 
-    public void setPlayerName(String playerName) {
+    public void sendPlayerData() {
         try {
-            out.writeObject(playerName);
+            out.writeObject(localPlayerData);
         } catch (IOException e) {
             e.printStackTrace();
         }
