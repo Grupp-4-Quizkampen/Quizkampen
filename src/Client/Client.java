@@ -29,6 +29,8 @@ public class Client implements ActionListener {
 
     public Client() {
         mainFrame = new MainGUI();
+        mainFrame.setLocationRelativeTo(null);
+        mainFrame.setSize(new Dimension(1000, 750));
         mainFrame.add(mainPanel);
         mainPanel.setLayout(new BorderLayout());
         startPanel = new StartPanel(this);
