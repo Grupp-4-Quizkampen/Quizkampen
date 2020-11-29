@@ -11,7 +11,7 @@ public class GameRound implements Serializable {
 
     GameRound(List<Question> questionList) {
         roundQuestionList = questionList;
-        System.out.println(roundQuestionList.get(0).getCategory());
+//        System.out.println(roundQuestionList.get(0).getCategory());
     }
 
     public List<Question> getRoundQuestionList() {
