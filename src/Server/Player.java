@@ -33,9 +33,6 @@ public class Player extends Thread {
 
     @Override
     public void run() {
-
-
-
         try {
             out.writeObject("All players are connected, we are ready to play!");
             //Client asks for playerName

@@ -15,12 +15,24 @@ public class Question implements Serializable {
         this.options = options;
         this.correctOptionIndex = correctOptionIndex;
     }
-    public boolean guess(int index) {
+    public boolean isCorrectAnswer(int index) {
         return index == correctOptionIndex;
     }
 
     public String getCategory() {
         return category;
+    }
+
+    public String getPrompt() {
+        return prompt;
+    }
+
+    public String[] getOptions() {
+        return options;
+    }
+
+    public int getCorrectOptionIndex() {
+        return correctOptionIndex;
     }
 }
 
