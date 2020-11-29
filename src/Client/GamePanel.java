@@ -1,6 +1,7 @@
 package Client;
 
 import Server.GameRound;
+import Server.Player;
 import Server.Question;
 import Server.RoundResults;
 
@@ -23,6 +24,7 @@ public class GamePanel extends JPanel implements ActionListener {
     private Question question;
     private RoundResults roundResults = new RoundResults();
     private GameRound gameRound;
+    private int currentQuestionIndex = -1;
 
     public List<JButton> getButtonList() {
         return buttonList;
@@ -54,17 +56,19 @@ public class GamePanel extends JPanel implements ActionListener {
 
     public void nextRound(GameRound nextRound) {
         this.gameRound = nextRound;
-        for (Question question : nextRound.getRoundQuestionList()) {
-            this.question = question;
-            ask();
-        }
+        askNextQuestion();
     }
 
-    private void ask() {
+
+    private void askNextQuestion() {
+        currentQuestionIndex++;
+        this.question = this.gameRound.getRoundQuestionList().get(currentQuestionIndex);
         categoryLabel.setText(question.getCategory());
         promptLabel.setText(question.getPrompt());
         for (int i = 0; i < 4; i++) {
             buttonList.get(i).setText(question.getOptions()[i]);
+            buttonList.get(i).setEnabled(true);
+            buttonList.get(i).setBackground(Color.white);
         }
     }
 
@@ -72,8 +76,7 @@ public class GamePanel extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(nextQuestionButton)) {
-            setVisible(false);
-
+            askNextQuestion();
         } else {
             revealAnswer();
             informationPanel.remove(categoryLabel);
