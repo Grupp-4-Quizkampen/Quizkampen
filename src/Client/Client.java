@@ -51,7 +51,7 @@ public class Client implements ActionListener {
             in = new ObjectInputStream(clientSocket.getInputStream());
             System.out.println(" Client/Server-Setup complete\n");
 
-            localPlayerData = new PlayerData(startPanel.getName(), startPanel.getChosenAvatarIndex());
+            localPlayerData = new PlayerData(startPanel.getNameField().getText(), startPanel.getChosenAvatarIndex());
             sendPlayerData();
 
         } catch (IOException e) {
@@ -83,6 +83,7 @@ public class Client implements ActionListener {
                     mainPanel.revalidate();
                 } else if (fromServer instanceof PlayerData) {
                     opponentPlayerData = (PlayerData)fromServer;
+                    resultPanel.setPlayerData(localPlayerData, opponentPlayerData);
                 }
 
             } catch (IOException | ClassNotFoundException e) {
@@ -101,6 +102,7 @@ public class Client implements ActionListener {
 
     public void submitResults(RoundResults roundResults) {
         try {
+            resultPanel.updateOwnResults(roundResults);
             out.writeObject(roundResults);
         } catch (IOException e) {
             e.printStackTrace();

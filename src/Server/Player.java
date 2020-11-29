@@ -61,6 +61,10 @@ public class Player extends Thread implements Serializable {
         }
     }
 
+    public PlayerData getPlayerData() {
+        return playerData;
+    }
+
     private void sendRoundResults(RoundResults roundResults) {
         try {
             out.writeObject(roundResults);
@@ -77,6 +81,7 @@ public class Player extends Thread implements Serializable {
     public void run() {
         try {
             out.writeObject("All players are connected, we are ready to play!");
+            out.writeObject(opponent.getPlayerData());
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -1,5 +1,6 @@
 package Client;
 
+import Server.PlayerData;
 import Server.RoundResults;
 
 import javax.swing.*;
@@ -9,8 +10,23 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class ResultPanel extends JPanel{
+    PlayerData localPlayerData;
+    PlayerData opponentPlayerData;
+
+    public void setPlayerData(PlayerData localPlayerData, PlayerData opponentPlayerData) {
+        this.localPlayerData = localPlayerData;
+        player1NameLabel.setText(localPlayerData.getName());
+        player1Icon.setImage(AvatarDatabase.getAvatars()[localPlayerData.getAvatar()].getImage());
+
+        this.opponentPlayerData = opponentPlayerData;
+        player2NameLabel.setText(opponentPlayerData.getName());
+        player2Icon.setImage(AvatarDatabase.getAvatars()[opponentPlayerData.getAvatar()].getImage());
+        revalidate();
+        System.out.println(localPlayerData.getAvatar() + ", " + opponentPlayerData.getAvatar());
+    }
+
     int numberOfRounds = 2;
-    int questionsPerRound = 4;
+    int questionsPerRound = 2;
     ImageIcon[] avatar = AvatarDatabase.getAvatars();
     Border border = new LineBorder(Color.BLACK, 1, false);
 
@@ -21,13 +37,13 @@ public class ResultPanel extends JPanel{
     JPanel centerHistoryPanel = new JPanel();
 
     JPanel player1Panel = new JPanel();
-    JLabel player1Label = new JLabel("Spelare 1");
+    JLabel player1NameLabel = new JLabel("Spelare 1");
     ImageIcon player1Icon = avatar[0];
     JPanel player1HeaderPanel = new JPanel();
     JPanel player1HistoryPanel = new JPanel();
 
     JPanel player2Panel = new JPanel();
-    JLabel player2Label = new JLabel("Spelare 2");
+    JLabel player2NameLabel = new JLabel("Spelare 2");
     ImageIcon player2Icon = avatar[1];
     JPanel player2HeaderPanel = new JPanel();
     JPanel player2HistoryPanel = new JPanel();
@@ -53,9 +69,9 @@ public class ResultPanel extends JPanel{
 
         player1Panel.setLayout(new BorderLayout());
         player1HeaderPanel.setLayout(new BoxLayout(player1HeaderPanel, BoxLayout.PAGE_AXIS));
-        player1Label.setFont(new Font("Verdana", Font.PLAIN, 20));
-        player1Label.setHorizontalAlignment(0);
-        player1HeaderPanel.add(player1Label);
+        player1NameLabel.setFont(new Font("Verdana", Font.PLAIN, 20));
+        player1NameLabel.setHorizontalAlignment(0);
+        player1HeaderPanel.add(player1NameLabel);
         player1HeaderPanel.add(new JLabel(player1Icon));
         player1Panel.add(BorderLayout.NORTH, player1HeaderPanel);
         player1HistoryPanel.setLayout(new GridLayout(numberOfRounds, questionsPerRound));
@@ -69,9 +85,9 @@ public class ResultPanel extends JPanel{
 
         player2Panel.setLayout(new BorderLayout());
         player2HeaderPanel.setLayout(new BoxLayout(player2HeaderPanel, BoxLayout.PAGE_AXIS));
-        player2Label.setFont(new Font("Verdana", Font.PLAIN, 20));
-        player2Label.setHorizontalAlignment(0);
-        player2HeaderPanel.add(player2Label);
+        player2NameLabel.setFont(new Font("Verdana", Font.PLAIN, 20));
+        player2NameLabel.setHorizontalAlignment(0);
+        player2HeaderPanel.add(player2NameLabel);
         player2HeaderPanel.add(new JLabel(player2Icon));
         player2Panel.add(BorderLayout.NORTH, player2HeaderPanel);
         player2HistoryPanel.setLayout(new GridLayout(numberOfRounds, questionsPerRound));
