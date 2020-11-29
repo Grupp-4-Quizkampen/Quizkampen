@@ -1,9 +1,12 @@
 package Client;
 
+import Server.RoundResults;
+
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class ResultPanel extends JPanel{
     int numberOfRounds = 2;
@@ -100,5 +103,13 @@ public class ResultPanel extends JPanel{
         add(BorderLayout.EAST, player2Panel);
         add(BorderLayout.CENTER, centerPanel);
 
+    }
+
+    public void updateOpponentResults(RoundResults roundResults) {
+        opponentResultsList.add(roundResults);
+    }
+
+    public void updateOwnResults(RoundResults roundResults) {
+        ownResultsList.add(roundResults);
     }
 }
