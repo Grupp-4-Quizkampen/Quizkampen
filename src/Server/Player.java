@@ -3,23 +3,21 @@ package Server;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.List;
 
-public class Player extends Thread {
+public class Player extends Thread implements Serializable {
 
-    Socket socket;
     String playerName;
     Game activeGame;
     ObjectOutputStream out;
     ObjectInputStream in;
-    ArrayList<RoundResults> roundResults = new ArrayList<>();
+    ArrayList<RoundResults> roundResultsList = new ArrayList<>();
     public Player opponent;
 
 
     public Player(Socket socket) {
-        this.socket = socket;
         try {
             out = new ObjectOutputStream(socket.getOutputStream());
             in = new ObjectInputStream(socket.getInputStream());  //Connects to the socket provided by Server
@@ -40,15 +38,15 @@ public class Player extends Thread {
                 if (fromClient instanceof RoundResults) {
 
                     // save round results, to be able to check for later
-                    roundResults.add((RoundResults)fromClient);
+                    roundResultsList.add((RoundResults)fromClient);
 
                     // check if opponent has stored round results
-                    var oppentsRoundResults = opponent.roundResults.get(activeGame.currentRoundIndex);
-                    if (oppentsRoundResults != null) {
+                    RoundResults opponentsRoundResults = opponent.roundResultsList.get(activeGame.currentRoundIndex);
+                    if (opponentsRoundResults != null) {
 
                         // ok yey, both players has finished round and ready to recieve results from their opponents
-                        opponent.recieveRoundResults((RoundResults)fromClient);
-                        recieveRoundResults(oppentsRoundResults);
+                        opponent.sendRoundResults(roundResultsList.get(activeGame.currentRoundIndex));
+                        sendRoundResults(opponentsRoundResults);
                     }
 
 
@@ -62,7 +60,7 @@ public class Player extends Thread {
         }
     }
 
-    private void recieveRoundResults(RoundResults roundResults) {
+    private void sendRoundResults(RoundResults roundResults) {
         try {
             out.writeObject(roundResults);
         } catch (IOException e) {

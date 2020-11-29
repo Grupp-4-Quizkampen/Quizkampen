@@ -12,34 +12,37 @@ public class ResultPanel extends JPanel{
 
     JPanel centerPanel = new JPanel();
     ImageIcon centerIcon = AvatarDatabase.getAvatars()[1];
-    JPanel centerScore = new JPanel();
+    JPanel centerScorePanel = new JPanel();
     JLabel scoreLabel = new JLabel("Poäng: 3-2");
-    JPanel centerHistory = new JPanel();
+    JPanel centerHistoryPanel = new JPanel();
 
-    JPanel player1 = new JPanel();
+    JPanel player1Panel = new JPanel();
     JLabel player1Label = new JLabel("Spelare 1");
     ImageIcon player1Icon = AvatarDatabase.getAvatars()[0];
-    JPanel player1Header = new JPanel();
-    JPanel player1History = new JPanel();
+    JPanel player1HeaderPanel = new JPanel();
+    JPanel player1HistoryPanel = new JPanel();
 
-    JPanel player2 = new JPanel();
+    JPanel player2Panel = new JPanel();
     JLabel player2Label = new JLabel("Spelare 2");
     ImageIcon player2Icon = AvatarDatabase.getAvatars()[1];
-    JPanel player2Header = new JPanel();
-    JPanel player2History = new JPanel();
+    JPanel player2HeaderPanel = new JPanel();
+    JPanel player2HistoryPanel = new JPanel();
+
+    ArrayList<RoundResults> ownResultsList = new ArrayList<>();
+    ArrayList<RoundResults> opponentResultsList = new ArrayList<>();
 
     ResultPanel(){
         setLayout(new BorderLayout());
 
         centerPanel.setLayout(new BorderLayout());
-        centerScore.setLayout(new BoxLayout(centerScore, BoxLayout.PAGE_AXIS));
+        centerScorePanel.setLayout(new BoxLayout(centerScorePanel, BoxLayout.PAGE_AXIS));
         scoreLabel.setFont(new Font("Verdana", Font.PLAIN, 30));
         scoreLabel.setBorder(border);
         scoreLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        centerScore.add(scoreLabel);
-        centerScore.add(new JLabel(centerIcon));
-        centerPanel.add(BorderLayout.NORTH, centerScore);
-        centerHistory.setLayout(new GridLayout(numberOfRounds, questionsPerRound));
+        centerScorePanel.add(scoreLabel);
+        centerScorePanel.add(new JLabel(centerIcon));
+        centerPanel.add(BorderLayout.NORTH, centerScorePanel);
+        centerHistoryPanel.setLayout(new GridLayout(numberOfRounds, questionsPerRound));
         for (int i = 0; i < numberOfRounds*questionsPerRound; i++) {
 
 
@@ -57,44 +60,44 @@ public class ResultPanel extends JPanel{
                 answerGrid.add(centerLabel);
             }
             gameHistoryPanel.add(BorderLayout.CENTER, answerGrid);
-            centerHistory.add(gameHistoryPanel);
+            centerHistoryPanel.add(gameHistoryPanel);
         }
 
-        centerPanel.add(BorderLayout.CENTER, centerHistory);
+        centerPanel.add(BorderLayout.CENTER, centerHistoryPanel);
 
-        player1.setLayout(new BorderLayout());
-        player1Header.setLayout(new BoxLayout(player1Header, BoxLayout.PAGE_AXIS));
+        player1Panel.setLayout(new BorderLayout());
+        player1HeaderPanel.setLayout(new BoxLayout(player1HeaderPanel, BoxLayout.PAGE_AXIS));
         player1Label.setFont(new Font("Verdana", Font.PLAIN, 20));
-        player1Header.add(player1Label);
-        player1Header.add(new JLabel(player1Icon));
-        player1.add(BorderLayout.NORTH, player1Header);
-        player1History.setLayout(new GridLayout(numberOfRounds, questionsPerRound));
+        player1HeaderPanel.add(player1Label);
+        player1HeaderPanel.add(new JLabel(player1Icon));
+        player1Panel.add(BorderLayout.NORTH, player1HeaderPanel);
+        player1HistoryPanel.setLayout(new GridLayout(numberOfRounds, questionsPerRound));
         for (int i = 0; i < numberOfRounds*questionsPerRound; i++) {
             JPanel player1Panel = new JPanel();
             player1Panel.setBackground(Color.GREEN);
             player1Panel.setBorder(border);
-            player1History.add(player1Panel);
+            player1HistoryPanel.add(player1Panel);
         }
-        player1.add(BorderLayout.CENTER, player1History);
+        player1Panel.add(BorderLayout.CENTER, player1HistoryPanel);
 
-        player2.setLayout(new BorderLayout());
-        player2Header.setLayout(new BoxLayout(player2Header, BoxLayout.PAGE_AXIS));
+        player2Panel.setLayout(new BorderLayout());
+        player2HeaderPanel.setLayout(new BoxLayout(player2HeaderPanel, BoxLayout.PAGE_AXIS));
         player2Label.setFont(new Font("Verdana", Font.PLAIN, 20));
-        player2Header.add(player2Label);
-        player2Header.add(new JLabel(player2Icon));
-        player2.add(BorderLayout.NORTH, player2Header);
-        player2History.setLayout(new GridLayout(numberOfRounds, questionsPerRound));
+        player2HeaderPanel.add(player2Label);
+        player2HeaderPanel.add(new JLabel(player2Icon));
+        player2Panel.add(BorderLayout.NORTH, player2HeaderPanel);
+        player2HistoryPanel.setLayout(new GridLayout(numberOfRounds, questionsPerRound));
         for (int i = 0; i < numberOfRounds*questionsPerRound; i++) {
             JPanel player2Panel = new JPanel();
             player2Panel.setBackground(Color.RED);
             player2Panel.setBorder(border);
-            player2History.add(player2Panel);
+            player2HistoryPanel.add(player2Panel);
         }
 
-        player2.add(BorderLayout.CENTER, player2History);
+        player2Panel.add(BorderLayout.CENTER, player2HistoryPanel);
 
-        add(BorderLayout.WEST, player1);
-        add(BorderLayout.EAST, player2);
+        add(BorderLayout.WEST, player1Panel);
+        add(BorderLayout.EAST, player2Panel);
         add(BorderLayout.CENTER, centerPanel);
 
     }

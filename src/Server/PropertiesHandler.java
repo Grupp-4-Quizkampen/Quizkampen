@@ -3,9 +3,10 @@ package Server;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.Properties;
 
-public class PropertiesHandler {
+public class PropertiesHandler implements Serializable {
 
     private int questionsPerRound;
     private int numberOfRounds;
