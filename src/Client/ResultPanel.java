@@ -13,43 +13,44 @@ public class ResultPanel extends JPanel{
     PlayerData localPlayerData;
     PlayerData opponentPlayerData;
 
-    public void setPlayerData(PlayerData localPlayerData, PlayerData opponentPlayerData) {
-        this.localPlayerData = localPlayerData;
-        player1NameLabel.setText(localPlayerData.getName());
-        player1Icon.setImage(AvatarDatabase.getAvatars()[localPlayerData.getAvatar()].getImage());
-
-        this.opponentPlayerData = opponentPlayerData;
-        player2NameLabel.setText(opponentPlayerData.getName());
-        player2Icon.setImage(AvatarDatabase.getAvatars()[opponentPlayerData.getAvatar()].getImage());
-        revalidate();
-        System.out.println(localPlayerData.getAvatar() + ", " + opponentPlayerData.getAvatar());
-    }
-
     int numberOfRounds = 2;
+
     int questionsPerRound = 2;
     ImageIcon[] avatar = AvatarDatabase.getAvatars();
     Border border = new LineBorder(Color.BLACK, 1, false);
-
     JPanel centerPanel = new JPanel();
+
     JButton nextRoundButton = new JButton("Nästa runda");
     JPanel centerScorePanel = new JPanel();
     JLabel scoreLabel = new JLabel("Poäng: 3-2");
     JPanel centerHistoryPanel = new JPanel();
-
     JPanel player1Panel = new JPanel();
+
     JLabel player1NameLabel = new JLabel("Spelare 1");
     ImageIcon player1Icon = avatar[0];
     JPanel player1HeaderPanel = new JPanel();
     JPanel player1HistoryPanel = new JPanel();
-
     JPanel player2Panel = new JPanel();
+
     JLabel player2NameLabel = new JLabel("Spelare 2");
     ImageIcon player2Icon = avatar[1];
     JPanel player2HeaderPanel = new JPanel();
     JPanel player2HistoryPanel = new JPanel();
-
     ArrayList<RoundResults> ownResultsList = new ArrayList<>();
+
     ArrayList<RoundResults> opponentResultsList = new ArrayList<>();
+
+    public void setPlayerData(PlayerData localPlayerData, PlayerData opponentPlayerData) {
+        this.localPlayerData = localPlayerData;
+        player1NameLabel.setText(localPlayerData.getName());
+        player1Icon.setImage(avatar[localPlayerData.getAvatar()].getImage());
+
+        this.opponentPlayerData = opponentPlayerData;
+        player2NameLabel.setText(opponentPlayerData.getName());
+        player2Icon.setImage(avatar[opponentPlayerData.getAvatar()].getImage());
+        revalidate();
+        System.out.println(localPlayerData.getAvatar() + ", " + opponentPlayerData.getAvatar());
+    }
 
     ResultPanel(){
         setLayout(new BorderLayout());
