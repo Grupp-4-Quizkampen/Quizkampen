@@ -69,6 +69,7 @@ public class Client implements ActionListener {
                 if (fromServer instanceof GameRound) {
                     GameRound nextRound = (GameRound) fromServer;
                     mainPanel.remove(startPanel);
+                    mainPanel.remove(resultPanel);
                     mainPanel.add(gamePanel);
                     gamePanel.nextRound(nextRound);
                     mainPanel.revalidate();

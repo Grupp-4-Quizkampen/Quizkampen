@@ -11,6 +11,7 @@ public class Player extends Thread implements Serializable {
 
     String playerName;
     Game activeGame;
+    int currentRoundIndex = 0;
     ObjectOutputStream out;
     ObjectInputStream in;
     ArrayList<RoundResults> roundResultsList = new ArrayList<>();
@@ -39,20 +40,19 @@ public class Player extends Thread implements Serializable {
                 if (fromClient instanceof RoundResults) {
 
                     // save round results, to be able to check for later
-                    roundResultsList.add((RoundResults)fromClient);
+                    roundResultsList.add((RoundResults) fromClient);
 
                     // check if opponent has stored round results
                     RoundResults opponentsRoundResults = opponent.roundResultsList.get(activeGame.currentRoundIndex);
                     if (opponentsRoundResults != null) {
-
                         // ok yey, both players has finished round and ready to recieve results from their opponents
                         opponent.sendRoundResults(roundResultsList.get(activeGame.currentRoundIndex));
                         sendRoundResults(opponentsRoundResults);
                     }
-
-
                 } else if (fromClient instanceof PlayerData) {
-                    setPlayerData((PlayerData)fromClient);
+                    setPlayerData((PlayerData) fromClient);
+                } else if (fromClient instanceof Boolean) {
+                    out.writeObject(activeGame.getGameRounds().get(currentRoundIndex++));
                 }
 
             } catch (IOException | ClassNotFoundException e) {
@@ -86,7 +86,7 @@ public class Player extends Thread implements Serializable {
             e.printStackTrace();
         }
 
-        GameRound currentRound = activeGame.getGameRounds().get(0);
+        GameRound currentRound = activeGame.getGameRounds().get(currentRoundIndex++);
         System.out.println("Question sent");
         try {
             out.writeObject(currentRound);
