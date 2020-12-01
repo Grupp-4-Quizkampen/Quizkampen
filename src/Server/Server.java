@@ -1,33 +1,23 @@
 package Server;
 
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.net.Socket;
+import java.io.IOException;
+import java.net.ServerSocket;
 
-/**
- * Created by: Anton Rolin
- * Date: 12/11/2020
- * Time: 13:30
- * Project: Quizkampen
- * Copyright: MIT
- */
-public class Server extends Thread{
-    Socket clientSocket;
+public class Server {
 
-    Server(Socket clientSocket){
-            this.clientSocket = clientSocket;
-    }
+    public static void main(String[] args) throws IOException {
 
-    @Override
-    public void run() {
-        try(ObjectInputStream in = new ObjectInputStream(clientSocket.getInputStream());
-            ObjectOutputStream out = new ObjectOutputStream(clientSocket.getOutputStream())){
-            while(true)
-            System.out.println(in.readObject());
+        ServerSocket serverSocket = new ServerSocket(44444);
+        System.out.println("Server is connected!");
 
 
-        }catch(Exception e){
-            e.printStackTrace();
+        while (true) {
+
+            Player player1 = new Player(serverSocket.accept());
+            Player player2 = new Player(serverSocket.accept());
+
+            new Game(player1, player2);
+
         }
     }
 }
