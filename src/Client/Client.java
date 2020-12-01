@@ -82,6 +82,7 @@ public class Client implements ActionListener {
                     resultPanel.updatePlayer2Results((RoundResults) fromServer);
                     mainPanel.add(resultPanel);
                     mainPanel.revalidate();
+                    mainPanel.repaint();
                 } else if (fromServer instanceof PlayerData) {
                     opponentPlayerData = (PlayerData)fromServer;
                     resultPanel.setPlayerData(localPlayerData, opponentPlayerData);

@@ -12,7 +12,6 @@ public class Game implements Serializable {
     List<GameRound> gameRounds = new ArrayList<>();
     List<Question> unusedQuestions;
     List<Question> questionList;
-    int currentRoundIndex = 0;
 
     PropertiesHandler propertiesHandler = new PropertiesHandler();
     int questionsPerRound = propertiesHandler.getQuestionsPerRound();

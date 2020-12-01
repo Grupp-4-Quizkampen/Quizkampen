@@ -43,13 +43,13 @@ public class Player extends Thread implements Serializable {
                     roundResultsList.add((RoundResults) fromClient);
 
                     // check if opponent has stored round results
-                    if (opponent.roundResultsList.size() > 0) {
+                    if (opponent.roundResultsList.size() > currentRoundIndex - 1) {
                         System.out.println("Opponent result list exists");
-                        RoundResults opponentsRoundResults = opponent.roundResultsList.get(activeGame.currentRoundIndex);
+                        RoundResults opponentsRoundResults = opponent.roundResultsList.get(currentRoundIndex-1);
                         if (opponent.roundResultsList.size() == currentRoundIndex) {
                             System.out.println("sending results");
                             // ok yey, both players has finished round and ready to receive results from their opponents
-                            opponent.sendRoundResults(roundResultsList.get(activeGame.currentRoundIndex));
+                            opponent.sendRoundResults(roundResultsList.get(currentRoundIndex - 1));
                             sendRoundResults(opponentsRoundResults);
                         }
                     }
