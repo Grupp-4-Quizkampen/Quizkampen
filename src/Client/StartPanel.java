@@ -72,7 +72,7 @@ public class StartPanel extends JPanel implements ActionListener {
         add(BorderLayout.CENTER, avatarPanel);
         add(BorderLayout.SOUTH, startButton);
         startButton.addActionListener(client);
-//        startButton.setEnabled(false);
+        startButton.setEnabled(false);
     }
 
     public void textFieldChanged() {
