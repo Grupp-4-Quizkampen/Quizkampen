@@ -15,7 +15,7 @@ public class Game implements Serializable {
     int currentRoundIndex = 0;
 
     PropertiesHandler propertiesHandler = new PropertiesHandler();
-    int questionsPerRound = propertiesHandler.getNumberOfQuestions();
+    int questionsPerRound = propertiesHandler.getQuestionsPerRound();
     int numberOfRounds = propertiesHandler.getNumberOfRounds();
 
     Player player1;

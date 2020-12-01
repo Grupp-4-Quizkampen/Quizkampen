@@ -1,6 +1,7 @@
 package Client;
 
 import Server.PlayerData;
+import Server.PropertiesHandler;
 import Server.RoundResults;
 
 import javax.swing.*;
@@ -8,37 +9,45 @@ import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ResultPanel extends JPanel{
     PlayerData localPlayerData;
     PlayerData opponentPlayerData;
 
-    int numberOfRounds = 2;
+    PropertiesHandler propertiesHandler = new PropertiesHandler();
+    int numberOfRounds = propertiesHandler.getNumberOfRounds();
+    int questionsPerRound = propertiesHandler.getQuestionsPerRound();
 
-    int questionsPerRound = 2;
     ImageIcon[] avatar = AvatarDatabase.getAvatars();
     Border border = new LineBorder(Color.BLACK, 1, false);
     JPanel centerPanel = new JPanel();
 
-    JButton nextRoundButton = new JButton("Nästa runda");
-    JPanel centerScorePanel = new JPanel();
-    JLabel scoreLabel = new JLabel("Poäng: 3-2");
-    JPanel centerHistoryPanel = new JPanel();
-    JPanel player1Panel = new JPanel();
 
+    JPanel player1Panel = new JPanel();
     JLabel player1NameLabel = new JLabel("Spelare 1");
     ImageIcon player1Icon = avatar[0];
     JPanel player1HeaderPanel = new JPanel();
     JPanel player1HistoryPanel = new JPanel();
-    JPanel player2Panel = new JPanel();
+    int player1Total = 0;
+    List<JPanel> player1ScorePanels = new ArrayList<>();
 
+    JPanel player2Panel = new JPanel();
     JLabel player2NameLabel = new JLabel("Spelare 2");
     ImageIcon player2Icon = avatar[1];
     JPanel player2HeaderPanel = new JPanel();
     JPanel player2HistoryPanel = new JPanel();
-    ArrayList<RoundResults> ownResultsList = new ArrayList<>();
+    int player2Total = 0;
+    List<JPanel> player2ScorePanels = new ArrayList<>();
 
-    ArrayList<RoundResults> opponentResultsList = new ArrayList<>();
+    JButton nextRoundButton = new JButton("Nästa runda");
+    JPanel centerScorePanel = new JPanel();
+    JLabel scoreLabel = new JLabel();
+    JPanel centerHistoryPanel = new JPanel();
+
+    List<RoundResults> ownResultsList = new ArrayList<>();
+
+    List<RoundResults> opponentResultsList = new ArrayList<>();
 
     public void setPlayerData(PlayerData localPlayerData, PlayerData opponentPlayerData) {
         this.localPlayerData = localPlayerData;
@@ -77,10 +86,11 @@ public class ResultPanel extends JPanel{
         player1Panel.add(BorderLayout.NORTH, player1HeaderPanel);
         player1HistoryPanel.setLayout(new GridLayout(numberOfRounds, questionsPerRound));
         for (int i = 0; i < numberOfRounds*questionsPerRound; i++) {
-            JPanel player1Panel = new JPanel();
-            player1Panel.setBackground(Color.GREEN);
-            player1Panel.setBorder(border);
-            player1HistoryPanel.add(player1Panel);
+            JPanel scorePanel = new JPanel();
+            scorePanel.setBackground(Color.GRAY);
+            scorePanel.setBorder(border);
+            player1HistoryPanel.add(scorePanel);
+            player1ScorePanels.add(scorePanel);
         }
         player1Panel.add(BorderLayout.CENTER, player1HistoryPanel);
 
@@ -92,11 +102,13 @@ public class ResultPanel extends JPanel{
         player2HeaderPanel.add(new JLabel(player2Icon));
         player2Panel.add(BorderLayout.NORTH, player2HeaderPanel);
         player2HistoryPanel.setLayout(new GridLayout(numberOfRounds, questionsPerRound));
+
         for (int i = 0; i < numberOfRounds*questionsPerRound; i++) {
-            JPanel player2Panel = new JPanel();
-            player2Panel.setBackground(Color.RED);
-            player2Panel.setBorder(border);
-            player2HistoryPanel.add(player2Panel);
+            JPanel scorePanel = new JPanel();
+            scorePanel.setBackground(Color.GRAY);
+            scorePanel.setBorder(border);
+            player2HistoryPanel.add(scorePanel);
+            player2ScorePanels.add(scorePanel);
         }
 
         player2Panel.add(BorderLayout.CENTER, player2HistoryPanel);
@@ -107,11 +119,35 @@ public class ResultPanel extends JPanel{
 
     }
 
-    public void updateOpponentResults(RoundResults roundResults) {
-        opponentResultsList.add(roundResults);
+    public void updateOwnResults(RoundResults roundResults) {
+        int index = 0;
+        ownResultsList.add(roundResults);
+        for (RoundResults roundResult : ownResultsList) {
+            for (Boolean isCorrect : roundResult) {
+                player1ScorePanels.get(index++).setBackground(isCorrect ? Color.GREEN : Color.RED);
+                if (isCorrect) {
+                    player1Total++;
+                }
+            }
+        }
+        setScore();
     }
 
-    public void updateOwnResults(RoundResults roundResults) {
-        ownResultsList.add(roundResults);
+    public void updateOpponentResults(RoundResults currentRound) {
+        int index = 0;
+        opponentResultsList.add(currentRound);
+        for (RoundResults roundResult : opponentResultsList) {
+            for (Boolean isCorrect : roundResult) {
+                player2ScorePanels.get(index++).setBackground(isCorrect ? Color.GREEN : Color.RED);
+                if (isCorrect) {
+                    player2Total++;
+                }
+            }
+        }
+        setScore();
+    }
+
+    public void setScore() {
+        scoreLabel.setText(String.format("Poäng: %d-%d", player1Total, player2Total));
     }
 }

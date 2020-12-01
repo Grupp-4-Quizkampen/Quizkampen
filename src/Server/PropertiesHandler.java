@@ -38,7 +38,7 @@ public class PropertiesHandler implements Serializable {
         return numberOfRounds;
     }
 
-    public int getNumberOfQuestions() {
+    public int getQuestionsPerRound() {
         return questionsPerRound;
     }
 
