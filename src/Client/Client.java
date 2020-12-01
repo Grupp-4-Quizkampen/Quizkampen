@@ -38,7 +38,7 @@ public class Client implements ActionListener {
         mainPanel.setLayout(new BorderLayout());
         startPanel = new StartPanel(this);
         gamePanel = new GamePanel(this);
-        resultPanel = new ResultPanel();
+        resultPanel = new ResultPanel(this);
         mainPanel.add(BorderLayout.CENTER, startPanel);
         mainFrame.revalidate();
     }
@@ -90,6 +90,14 @@ public class Client implements ActionListener {
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    public void requestNextRound() {
+        try {
+            out.writeObject(Boolean.TRUE);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

@@ -56,13 +56,13 @@ public class GamePanel extends JPanel implements ActionListener {
 
     public void nextRound(GameRound nextRound) {
         this.gameRound = nextRound;
+        currentQuestionIndex = -1;
         askNextQuestion();
     }
 
 
     private void askNextQuestion() {
-        currentQuestionIndex++;
-        this.question = this.gameRound.getRoundQuestionList().get(currentQuestionIndex);
+        this.question = this.gameRound.getRoundQuestionList().get(++currentQuestionIndex);
         categoryLabel.setText(question.getCategory());
         promptLabel.setText(question.getPrompt());
         for (int i = 0; i < 4; i++) {

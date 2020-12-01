@@ -8,10 +8,14 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ResultPanel extends JPanel{
+public class ResultPanel extends JPanel implements ActionListener {
+    Client client;
+
     PlayerData localPlayerData;
     PlayerData opponentPlayerData;
 
@@ -21,8 +25,6 @@ public class ResultPanel extends JPanel{
 
     ImageIcon[] avatar = AvatarDatabase.getAvatars();
     Border border = new LineBorder(Color.BLACK, 1, false);
-    JPanel centerPanel = new JPanel();
-
 
     JPanel player1Panel = new JPanel();
     JLabel player1NameLabel = new JLabel("Spelare 1");
@@ -40,6 +42,7 @@ public class ResultPanel extends JPanel{
     int player2Total = 0;
     List<JPanel> player2ScorePanels = new ArrayList<>();
 
+    JPanel centerPanel = new JPanel();
     JButton nextRoundButton = new JButton("Nästa runda");
     JPanel centerScorePanel = new JPanel();
     JLabel scoreLabel = new JLabel();
@@ -61,9 +64,9 @@ public class ResultPanel extends JPanel{
         System.out.println(localPlayerData.getAvatar() + ", " + opponentPlayerData.getAvatar());
     }
 
-    ResultPanel(){
+    ResultPanel(Client client){
         setLayout(new BorderLayout());
-
+        this.client = client;
         centerPanel.setLayout(new BorderLayout());
         centerScorePanel.setLayout(new BorderLayout());
         scoreLabel.setFont(new Font("Verdana", Font.PLAIN, 30));
@@ -76,6 +79,7 @@ public class ResultPanel extends JPanel{
         centerPanel.add(BorderLayout.NORTH, centerScorePanel);
 
         centerPanel.add(BorderLayout.CENTER, centerHistoryPanel);
+        nextRoundButton.addActionListener(this);
 
         player1Panel.setLayout(new BorderLayout());
         player1HeaderPanel.setLayout(new BoxLayout(player1HeaderPanel, BoxLayout.PAGE_AXIS));
@@ -149,5 +153,12 @@ public class ResultPanel extends JPanel{
 
     public void setScore() {
         scoreLabel.setText(String.format("Poäng: %d-%d", player1Total, player2Total));
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == nextRoundButton) {
+            client.requestNextRound();
+        }
     }
 }
