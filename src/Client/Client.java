@@ -70,7 +70,7 @@ public class Client implements ActionListener {
                     GameRound nextRound = (GameRound) fromServer;
                     mainPanel.remove(startPanel);
                     mainPanel.remove(resultPanel);
-                    mainPanel.add(gamePanel);
+                    mainPanel.add(gamePanel = new GamePanel(this));
                     gamePanel.nextRound(nextRound);
                     mainPanel.revalidate();
                 } else if (fromServer instanceof String) {
@@ -79,7 +79,7 @@ public class Client implements ActionListener {
                     opponent = (Player) fromServer;
                 } else if (fromServer instanceof RoundResults) {
                     mainPanel.remove(gamePanel);
-                    resultPanel.updateOpponentResults((RoundResults) fromServer);
+                    resultPanel.updatePlayer2Results((RoundResults) fromServer);
                     mainPanel.add(resultPanel);
                     mainPanel.revalidate();
                 } else if (fromServer instanceof PlayerData) {
@@ -111,7 +111,7 @@ public class Client implements ActionListener {
 
     public void submitResults(RoundResults roundResults) {
         try {
-            resultPanel.updateOwnResults(roundResults);
+            resultPanel.updatePlayer1Results(roundResults);
             out.writeObject(roundResults);
         } catch (IOException e) {
             e.printStackTrace();

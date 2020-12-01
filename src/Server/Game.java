@@ -80,17 +80,14 @@ public class Game implements Serializable {
 
             int counter = 0;
             while (scan.hasNext()) {
-                System.out.println("Loop "+ ++counter);
                 String category = scan.next();
                 String prompt = scan.next();
                 String[] options = new String[4];
                 for (int i = 0; i < 4; i++) {
                     options[i] = scan.next();
-                    System.out.println(options[i]);
                 }
                 int correctAnswerIndex = Integer.parseInt(scan.next().trim());
                 unusedQuestions.add(new Question(category, prompt, options, correctAnswerIndex));
-                System.out.println(unusedQuestions.get(unusedQuestions.size()-1).getCategory());
             }
 
 

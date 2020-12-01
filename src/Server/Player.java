@@ -43,11 +43,15 @@ public class Player extends Thread implements Serializable {
                     roundResultsList.add((RoundResults) fromClient);
 
                     // check if opponent has stored round results
-                    RoundResults opponentsRoundResults = opponent.roundResultsList.get(activeGame.currentRoundIndex);
-                    if (opponentsRoundResults != null) {
-                        // ok yey, both players has finished round and ready to recieve results from their opponents
-                        opponent.sendRoundResults(roundResultsList.get(activeGame.currentRoundIndex));
-                        sendRoundResults(opponentsRoundResults);
+                    if (opponent.roundResultsList.size() > 0) {
+                        System.out.println("Opponent result list exists");
+                        RoundResults opponentsRoundResults = opponent.roundResultsList.get(activeGame.currentRoundIndex);
+                        if (opponent.roundResultsList.size() == currentRoundIndex) {
+                            System.out.println("sending results");
+                            // ok yey, both players has finished round and ready to receive results from their opponents
+                            opponent.sendRoundResults(roundResultsList.get(activeGame.currentRoundIndex));
+                            sendRoundResults(opponentsRoundResults);
+                        }
                     }
                 } else if (fromClient instanceof PlayerData) {
                     setPlayerData((PlayerData) fromClient);
@@ -68,6 +72,7 @@ public class Player extends Thread implements Serializable {
     private void sendRoundResults(RoundResults roundResults) {
         try {
             out.writeObject(roundResults);
+            System.out.println(roundResults);
         } catch (IOException e) {
             e.printStackTrace();
         }

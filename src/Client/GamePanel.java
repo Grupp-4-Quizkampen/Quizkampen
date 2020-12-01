@@ -89,7 +89,9 @@ public class GamePanel extends JPanel implements ActionListener {
             //Check if the clicked button is in the correct index of the buttonList
             roundResults.add(e.getSource().equals(buttonList.get(question.getCorrectOptionIndex())));
             if (roundResults.size() == gameRound.getRoundQuestionList().size()) {
+                System.out.println("Sending results: " + roundResults);
                 client.submitResults(roundResults);
+                roundResults = new RoundResults();
             }
             if (e.getSource().equals(buttonList.get(question.getCorrectOptionIndex()))) {
                 System.out.println("Rätt svar");

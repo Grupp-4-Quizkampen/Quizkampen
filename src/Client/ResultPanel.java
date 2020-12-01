@@ -48,9 +48,9 @@ public class ResultPanel extends JPanel implements ActionListener {
     JLabel scoreLabel = new JLabel();
     JPanel centerHistoryPanel = new JPanel();
 
-    List<RoundResults> ownResultsList = new ArrayList<>();
+    List<RoundResults> player1ResultsList = new ArrayList<>();
 
-    List<RoundResults> opponentResultsList = new ArrayList<>();
+    List<RoundResults> player2ResultsList = new ArrayList<>();
 
     public void setPlayerData(PlayerData localPlayerData, PlayerData opponentPlayerData) {
         this.localPlayerData = localPlayerData;
@@ -123,10 +123,11 @@ public class ResultPanel extends JPanel implements ActionListener {
 
     }
 
-    public void updateOwnResults(RoundResults roundResults) {
+    public void updatePlayer1Results(RoundResults roundResults) {
         int index = 0;
-        ownResultsList.add(roundResults);
-        for (RoundResults roundResult : ownResultsList) {
+        player1Total = 0;
+        player1ResultsList.add(roundResults);
+        for (RoundResults roundResult : player1ResultsList) {
             for (Boolean isCorrect : roundResult) {
                 player1ScorePanels.get(index++).setBackground(isCorrect ? Color.GREEN : Color.RED);
                 if (isCorrect) {
@@ -137,10 +138,11 @@ public class ResultPanel extends JPanel implements ActionListener {
         setScore();
     }
 
-    public void updateOpponentResults(RoundResults currentRound) {
+    public void updatePlayer2Results(RoundResults currentRound) {
         int index = 0;
-        opponentResultsList.add(currentRound);
-        for (RoundResults roundResult : opponentResultsList) {
+        player2Total = 0;
+        player2ResultsList.add(currentRound);
+        for (RoundResults roundResult : player2ResultsList) {
             for (Boolean isCorrect : roundResult) {
                 player2ScorePanels.get(index++).setBackground(isCorrect ? Color.GREEN : Color.RED);
                 if (isCorrect) {
